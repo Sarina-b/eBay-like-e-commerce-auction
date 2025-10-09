@@ -1,10 +1,37 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Create auction</title>
+    <link rel="stylesheet" href="{% static 'auctions/create_auction.css' %}">
 </head>
 <body>
-$END$
+<form class="create_auction_form" action="{% url 'create_auction' %}" method="POST">
+    {% csrf_token %}
+    <div class="input_container">
+        <label class="label" for="title_of_auction">Title: </label>
+        <input class="title_of_auction" type="text" name="title" placeholder="title of auction" required>
+    </div>
+    <div class="input_container">
+        <label class="label" for="description_for_auction">Description: </label>
+        <textarea class="description_for_auction" name="description" placeholder=
+                "Enter description for auction" required></textarea>
+    </div>
+    <div class="input_container">
+        <label class="label" for="start_bid">Start bid: </label>
+        <input class="start_bid" type="number" name="start_bid" placeholder="start bid" required>
+    </div>
+    <div class="input_container">
+        <label class="label" for="category_of_auction">Category: </label>
+        <input class="category_of_auction" type="text" name="category" placeholder="category">
+    </div>
+    <div class="input_container">
+        <label class="label" for="image_of_auction">Image: </label>
+        <input class="image_of_auction" type="url" name="image_url" placeholder="URL of image">
+    </div>
+    <input class="Create_button" type="submit" value="Create auction" name="create button">
+</form>
+
 </body>
 </html>

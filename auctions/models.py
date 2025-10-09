@@ -25,14 +25,14 @@ class List_Auctions(models.Model):
     description = models.TextField()
     start_bid = models.FloatField()
     photo = models.URLField(max_length=500, blank=True, null=True)
-    category = models.CharField(max_length=100)
+    category = models.CharField(max_length=100, blank=True, null=True)
     start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
+    end_date = models.DateTimeField(blank=True, null=True)
     active = models.BooleanField(default=True)
 
     def __str__(self):
-        return (f" {self.id} + {self.title} + {self.description} + {self.start_date} - {self.end_date}"
-                f"+ {self.category}  + {self.start_bid} + {self.photo} + {self.active}")
+        return (f" {self.id} + {self.user} + {self.title} + {self.description} + {self.start_date} - {self.end_date}"
+                f"+ {self.category} + {self.start_bid} + {self.photo} + {self.active}")
 
 
 class Watchlist(models.Model):
@@ -47,7 +47,7 @@ class Watchlist_Items(models.Model):
     auction = models.ForeignKey(List_Auctions, on_delete=models.CASCADE, related_name='Watchlist_Items')
 
     def __str__(self):
-        return f"{self.id}+{self.watchlist} + {self.auction}"
+        return f"{self.id} + {self.watchlist} + {self.auction}"
 
 
 class Comment(models.Model):
@@ -59,7 +59,7 @@ class Comment(models.Model):
     written_at = models.DateTimeField()
 
     def __str__(self):
-        return f"{self.id}+{self.user} + {self.auction} + {self.text} + {self.written_at}"
+        return f"{self.id} + {self.user} + {self.auction} + {self.text} + {self.written_at}"
 
 
 class Bids(models.Model):

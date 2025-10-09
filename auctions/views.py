@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
@@ -5,6 +7,7 @@ from django.shortcuts import render
 from django.urls import reverse
 
 from .models import User
+from .models import List_Auctions
 
 
 def index(request):
@@ -61,3 +64,22 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "auctions/register.html")
+
+
+def create_auction(request):
+    if request.method == "POST":
+        start_date = datetime.now()
+        user = request.username
+        title = request.POST["title"]
+        description = request.POST["description"]
+        category = request.POST["category"]
+        image_url = request.POST["image_url"]
+        start_bid = request.POST["start_bid"]
+        new_auction = List_Auctions.objects.create(user=user,title=title, description=description,
+                                                   photo=image_url,category=category,
+                                                   start_bid=start_bid,start_date=start_date)
+        new_auction.save()
+        print(List_Auctions.objects.all())
+        return HttpResponse("Good")
+    else:
+        return render(request, 'auctions/create_auction.html')
