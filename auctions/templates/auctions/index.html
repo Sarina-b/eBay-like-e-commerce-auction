@@ -1,8 +1,26 @@
-
 {% extends "auctions/layout.html" %}
 
 {% block body %}
     <h2>Active Listings</h2>
 
-    TODO
+
+    <div class="all_auctions_container">
+        {% for auction in all_auctions %}
+            <a href="{% url 'index' %}">
+                <div class="each_auction">
+                    <div class="image_container">{{ auction.photo }} image place</div>
+                    <div class="info_container">
+                        <p class="title">{{ auction.title }}</p>
+                        <p class="description">{{ auction.description }}</p>
+                        <p class="start_bid">Price: {{ auction.start_bid }} $</p>
+                        <p class="created_time">Created at {{ auction.start_date }}</p>
+                    </div>
+
+
+                </div>
+
+            </a>
+        {% endfor %}
+
+    </div>
 {% endblock %}

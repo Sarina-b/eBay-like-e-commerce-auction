@@ -11,7 +11,8 @@ from .models import List_Auctions
 
 
 def index(request):
-    return render(request, "auctions/index.html")
+    all_auctions = List_Auctions.objects.all()
+    return render(request, "auctions/index.html", {"all_auctions": all_auctions})
 
 
 def login_view(request):
