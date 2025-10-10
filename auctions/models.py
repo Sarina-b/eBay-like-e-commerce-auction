@@ -1,5 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.core.files import File
+from urllib.request import urlopen
+from tempfile import NamedTemporaryFile
 
 
 # users(user_id,email,username,password)
@@ -25,10 +28,21 @@ class List_Auctions(models.Model):
     description = models.TextField()
     start_bid = models.FloatField()
     photo = models.URLField(max_length=500, blank=True, null=True)
+    photo_file = models.ImageField(upload_to='auction_photos/', blank=True, null=True)
     category = models.CharField(max_length=100, blank=True, null=True)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField(blank=True, null=True)
     active = models.BooleanField(default=True)
+
+    def convert_URL_to_file(self):
+        if self.photo and not self.photo_file:
+            try:
+                temp_space = NamedTemporaryFile(delete=True)
+                temp_space.write(urlopen(self.photo).read())
+                temp_space.flush()
+                self.photo_file.save(f"image_{self.pk}.jpg", File(temp_space), save=False)
+            except:
+                pass
 
     def __str__(self):
         return (f" {self.id} + {self.user} + {self.title} + {self.description} + {self.start_date} - {self.end_date}"

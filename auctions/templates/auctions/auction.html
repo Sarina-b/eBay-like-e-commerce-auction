@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ requested_auction.title }}</title>
+    <link rel="stylesheet" href="{% static 'auctions/auction.css' %}">
+</head>
+<body>
+<div class="auction_info">
+    <div class="title">{{ requested_auction.title }}</div>
+    <div class="photo"><img src="{{ requested_auction.photo }}" alt="{{ requested_auction.title }}"></div>
+    <div class="description">{{ requested_auction.description }}</div>
+    <form class="auction_bid_and_comment">
+        <div class="comment_container">
+            <label for="comment">Comment: </label>
+            <input class="comment" type="text" placeholder="comment your opinion about this stuff">
+        </div>
+        <div class="bid_container">
+            <label for="bid">Bid: </label>
+            <input class="bid" type="number" placeholder="your recommended bid">
+        </div>
+    </form>
+    {% if requested_auction.category is not None %}
+        <div class="category">Category: {{ requested_auction.category }}</div>
+    {% endif %}
+    <div class="auction_user_and_time">Listed by : {{ requested_auction.user }}
+        at {{ requested_auction.start_date }}</div>
+</div>
+
+</body>
+</html>

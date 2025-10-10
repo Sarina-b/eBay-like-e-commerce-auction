@@ -1,9 +1,9 @@
-from datetime import datetime
+from django.utils import timezone
 
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 
 from .models import User
@@ -69,18 +69,22 @@ def register(request):
 
 def create_auction(request):
     if request.method == "POST":
-        start_date = datetime.now()
-        user = request.username
+        start_date = timezone.now()
+        user = request.user
         title = request.POST["title"]
         description = request.POST["description"]
         category = request.POST["category"]
         image_url = request.POST["image_url"]
         start_bid = request.POST["start_bid"]
-        new_auction = List_Auctions.objects.create(user=user,title=title, description=description,
-                                                   photo=image_url,category=category,
-                                                   start_bid=start_bid,start_date=start_date)
+        new_auction = List_Auctions.objects.create(user=user, title=title, description=description,
+                                                   photo=image_url, category=category,
+                                                   start_bid=start_bid, start_date=start_date)
         new_auction.save()
-        print(List_Auctions.objects.all())
-        return HttpResponse("Good")
+        return redirect(reverse("show_auctions", args=[new_auction.id,title]))
     else:
         return render(request, 'auctions/create_auction.html')
+
+
+def show_auctions(request, auction_id, auction_title):
+    requested_auction = List_Auctions.objects.get(pk=auction_id, title=auction_title)
+    return render(request, 'auctions/auction.html', {"requested_auction": requested_auction})
