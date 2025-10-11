@@ -1,12 +1,14 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.utils import timezone
 
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
-from .models import User
+from .models import User, Comment
 from .models import List_Auctions
 
 
@@ -80,11 +82,46 @@ def create_auction(request):
                                                    photo=image_url, category=category,
                                                    start_bid=start_bid, start_date=start_date)
         new_auction.save()
-        return redirect(reverse("show_auctions", args=[new_auction.id,title]))
+        return redirect(reverse("show_auctions", args=[new_auction.id, title]))
     else:
         return render(request, 'auctions/create_auction.html')
 
 
 def show_auctions(request, auction_id, auction_title):
+    owner_of_auction = False
     requested_auction = List_Auctions.objects.get(pk=auction_id, title=auction_title)
-    return render(request, 'auctions/auction.html', {"requested_auction": requested_auction})
+    if request.user == requested_auction.user:
+        owner_of_auction = True
+    return render(request, 'auctions/auction.html',
+                  {"requested_auction": requested_auction},
+                  {"owner_of_auction": owner_of_auction})
+
+
+@login_required
+def bid_and_comment(request, requested_auction_id):
+    requested_auction = List_Auctions.objects.get(pk=requested_auction_id)
+    if request.method == "POST":
+        comment = request.POST["comment"]
+        now = timezone.now()
+        bid = request.POST["bid"]
+        if bid.strip() != "":
+            bid = float(bid)
+            if bid > requested_auction.start_bid:
+                requested_auction.start_bid = bid
+                requested_auction.save()
+                return redirect(reverse("show_auctions", args=[requested_auction.id, requested_auction.title]))
+            else:
+                messages.error(request, "Your suggested bid should be more than the latest bid.")
+        if comment.strip() != "":
+            new_comment = Comment.objects.create(user=request.user, auction=requested_auction, text=comment,
+                                                 written_at=now)
+            new_comment.save()
+            return redirect(reverse("show_auctions", args=[requested_auction.id, requested_auction.title]))
+    else:
+        messages.error(request, "Comment or bid is empty.")
+
+
+def close_auction(request, auction_id):
+    auction = List_Auctions.objects.get(pk=auction_id)
+
+    auction.active = False

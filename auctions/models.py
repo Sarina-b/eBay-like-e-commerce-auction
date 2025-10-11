@@ -68,7 +68,7 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='Comments', null=True, blank=True)
     # Using on_delete=models.SET_NULL so if the user is deleted, the comment is kept for reference.
     author_name = models.CharField(max_length=100)
-    auction = models.ForeignKey(List_Auctions, on_delete=models.CASCADE, related_name='Comments')
+    auction = models.ForeignKey(List_Auctions, on_delete=models.CASCADE, related_name='Comments',blank=True, null=True)
     text = models.TextField()
     written_at = models.DateTimeField()
 

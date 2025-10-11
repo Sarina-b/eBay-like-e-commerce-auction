@@ -49,3 +49,24 @@ body{
     gap: 10px
 
 }
+.place_bid_button{
+    background-color: #46aad6;
+    border-radius: 4px;
+    width: 70%;
+    height: 40px;
+    color: white;
+    font-size: larger;
+    font-family: Arial , sans-serif;
+}
+.place_bid_button:hover{
+    transform: scale(1.05);
+}
+.title{
+    font-family: Arial sans-serif;
+    font-weight: 400;
+    font-size: 50px;
+}
+.message{
+    color: red;
+    font-family: Arial sans-serif;
+}
