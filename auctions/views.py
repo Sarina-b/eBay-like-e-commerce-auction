@@ -93,8 +93,8 @@ def show_auctions(request, auction_id, auction_title):
     if request.user == requested_auction.user:
         owner_of_auction = True
     return render(request, 'auctions/auction.html',
-                  {"requested_auction": requested_auction},
-                  {"owner_of_auction": owner_of_auction})
+                  {"requested_auction": requested_auction,
+                   "owner_of_auction": owner_of_auction})
 
 
 @login_required
@@ -123,5 +123,6 @@ def bid_and_comment(request, requested_auction_id):
 
 def close_auction(request, auction_id):
     auction = List_Auctions.objects.get(pk=auction_id)
-
     auction.active = False
+    auction.save()
+    return redirect(reverse("show_auctions", args=[auction.id, auction.title]))
