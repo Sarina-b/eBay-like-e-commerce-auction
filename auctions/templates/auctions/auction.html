@@ -9,6 +9,9 @@
 
 </head>
 <body>
+<div class="watchlist_link_container">
+    <a href="{% url 'add_to_watchlist' requested_auction.id %}">Add to watchlist</a>
+</div>
 {% if owner_of_auction %}
     <a href="#closeWindow" class="close_auction_link">Close auction</a>
 {% endif %}
@@ -47,7 +50,7 @@
             {% if not owner_of_auction %}
                 <input class="place_bid_button" type="submit" value="Place Bid" name="placing_bid">
             {% else %}
-            <input class="place_bid_button" type="submit" value="Place Bid" name="placing_bid" disabled>
+                <input class="place_bid_button" type="submit" value="Place Bid" name="placing_bid" disabled>
             {% endif %}
         </form>
     {% else %}
@@ -79,9 +82,8 @@
 
     </div>
 </div>
-<div class="go_to_home_container">
-    <a class="go_to_home_link" href="{% url 'index' %}">Go to home</a>
-</div>
+<a class="go_to_home_link" href="{% url 'index' %}">Go to home</a>
+
 
 </body>
 </html>

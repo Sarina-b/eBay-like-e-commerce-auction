@@ -8,13 +8,19 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
-from .models import User, Comment
+from .models import User, Comment, Watchlist, Watchlist_Items
 from .models import List_Auctions
 
 
 def index(request):
     all_auctions = List_Auctions.objects.all()
-    return render(request, "auctions/index.html", {"all_auctions": all_auctions})
+    user_watchlist = Watchlist.objects.get(user=request.user)
+    user_watchlist_items = Watchlist_Items.objects.get(watchlist=user_watchlist)
+    number_of_watchlist_items = user_watchlist_items.count()
+    return render(request, "auctions/index.html",
+                  {"all_auctions": all_auctions,
+                   "user_watchlist": user_watchlist, "user_watchlist_items": user_watchlist_items,
+                   "number_of_watchlist_items": number_of_watchlist_items})
 
 
 def login_view(request):
@@ -126,3 +132,20 @@ def close_auction(request, auction_id):
     auction.active = False
     auction.save()
     return redirect(reverse("show_auctions", args=[auction.id, auction.title]))
+
+
+def add_to_watchlist(request, auction_id):
+    auction = List_Auctions.objects.get(pk=auction_id)
+    if request.Watchlist is None:
+        new_watchlist = Watchlist.objects.create(user=request.user)
+        new_watchlist.save()
+        new_watchlist_items = Watchlist_Items.objects.create(watchlist=new_watchlist, auction=auction)
+        new_watchlist_items.save()
+    elif request.Watchlist.user == request.uesr and request.Watchlist_Items.auction == auction:
+        target_watchlist_Items = Watchlist_Items.objects.get(auction=auction)
+        target_watchlist_Items.delete()
+        target_watchlist_Items.save()
+    else:
+        existing_watchlist = request.Watchlist.objects.get(user=request.user)
+        new_watchlist_items = request.Watchlist_Items.objects.get(watchlist=existing_watchlist, auction=auction)
+        new_watchlist_items.save()
