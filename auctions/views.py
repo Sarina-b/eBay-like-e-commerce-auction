@@ -1,22 +1,24 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils import timezone
-
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
-
 from .models import User, Comment, Watchlist, Watchlist_Items
 from .models import List_Auctions
 
 
 def index(request):
+    user_watchlist_items = None
     all_auctions = List_Auctions.objects.all()
     user_watchlist = Watchlist.objects.get(user=request.user)
-    user_watchlist_items = Watchlist_Items.objects.get(watchlist=user_watchlist)
-    number_of_watchlist_items = user_watchlist_items.count()
+    if not Watchlist_Items.objects.filter(watchlist=user_watchlist).exists():
+        number_of_watchlist_items = 0
+    else:
+        user_watchlist_items = Watchlist_Items.objects.filter(watchlist=user_watchlist)
+        number_of_watchlist_items = user_watchlist_items.count()
     return render(request, "auctions/index.html",
                   {"all_auctions": all_auctions,
                    "user_watchlist": user_watchlist, "user_watchlist_items": user_watchlist_items,
@@ -95,12 +97,17 @@ def create_auction(request):
 
 def show_auctions(request, auction_id, auction_title):
     owner_of_auction = False
+    in_watchlist_items = False
     requested_auction = List_Auctions.objects.get(pk=auction_id, title=auction_title)
     if request.user == requested_auction.user:
         owner_of_auction = True
+    watchlist = Watchlist.objects.get(user=request.user)
+    if requested_auction.Watchlist_Items.filter(watchlist=watchlist,auction=requested_auction).exists():
+        in_watchlist_items = True
     return render(request, 'auctions/auction.html',
                   {"requested_auction": requested_auction,
-                   "owner_of_auction": owner_of_auction})
+                   "owner_of_auction": owner_of_auction,
+                   "in_watchlist_items": in_watchlist_items})
 
 
 @login_required
@@ -134,18 +141,24 @@ def close_auction(request, auction_id):
     return redirect(reverse("show_auctions", args=[auction.id, auction.title]))
 
 
-def add_to_watchlist(request, auction_id):
-    auction = List_Auctions.objects.get(pk=auction_id)
-    if request.Watchlist is None:
-        new_watchlist = Watchlist.objects.create(user=request.user)
-        new_watchlist.save()
-        new_watchlist_items = Watchlist_Items.objects.create(watchlist=new_watchlist, auction=auction)
-        new_watchlist_items.save()
-    elif request.Watchlist.user == request.uesr and request.Watchlist_Items.auction == auction:
-        target_watchlist_Items = Watchlist_Items.objects.get(auction=auction)
-        target_watchlist_Items.delete()
-        target_watchlist_Items.save()
+def show_watchlist(request):
+    user_watchlist = Watchlist.objects.get(user=request.user)
+    if Watchlist_Items.objects.filter(watchlist=user_watchlist).exists():
+        watchlist = List_Auctions.objects.filter(Watchlist_Items__watchlist=user_watchlist)
     else:
-        existing_watchlist = request.Watchlist.objects.get(user=request.user)
-        new_watchlist_items = request.Watchlist_Items.objects.get(watchlist=existing_watchlist, auction=auction)
+        watchlist = None
+    return render(request, 'auctions/watchlist.html',
+                  {"watchlist": watchlist})
+
+
+def watchlist_add_or_delete(request, auction_id):
+    auction = List_Auctions.objects.get(pk=auction_id)
+    user_watchlist = Watchlist.objects.get(user=request.user)
+    if Watchlist_Items.objects.filter(auction=auction, watchlist=user_watchlist).exists():
+        target_watchlist_Items = Watchlist_Items.objects.get(auction=auction,watchlist=user_watchlist)
+        target_watchlist_Items.delete()
+        return redirect(reverse("show_auctions", args=[auction.id, auction.title]))
+    else:
+        new_watchlist_items = Watchlist_Items.objects.create(watchlist=user_watchlist, auction=auction)
         new_watchlist_items.save()
+        return redirect(reverse("show_auctions", args=[auction.id, auction.title]))

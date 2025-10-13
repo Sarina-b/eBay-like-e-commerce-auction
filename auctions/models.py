@@ -50,7 +50,7 @@ class List_Auctions(models.Model):
 
 
 class Watchlist(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='Watchlist')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='Watchlist', blank=True, null=True)
 
     def __str__(self):
         return f"{self.user} + {self.id}"
@@ -58,7 +58,8 @@ class Watchlist(models.Model):
 
 class Watchlist_Items(models.Model):
     watchlist = models.ForeignKey(Watchlist, on_delete=models.CASCADE, related_name='Watchlist_Items')
-    auction = models.ForeignKey(List_Auctions, on_delete=models.CASCADE, related_name='Watchlist_Items')
+    auction = models.ForeignKey(List_Auctions, on_delete=models.CASCADE, related_name='Watchlist_Items'
+                                , blank=True, null=True)
 
     def __str__(self):
         return f"{self.id} + {self.watchlist} + {self.auction}"
@@ -68,7 +69,7 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='Comments', null=True, blank=True)
     # Using on_delete=models.SET_NULL so if the user is deleted, the comment is kept for reference.
     author_name = models.CharField(max_length=100)
-    auction = models.ForeignKey(List_Auctions, on_delete=models.CASCADE, related_name='Comments',blank=True, null=True)
+    auction = models.ForeignKey(List_Auctions, on_delete=models.CASCADE, related_name='Comments', blank=True, null=True)
     text = models.TextField()
     written_at = models.DateTimeField()
 

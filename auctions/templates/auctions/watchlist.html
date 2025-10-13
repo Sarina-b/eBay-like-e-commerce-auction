@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Watchlist</title>
+</head>
+<body>
+{% if not watchlist %}
+    <div>No list in you watchlist</div>
+    {% else %}
+           {% for auction in watchlist %}
+                <a href="{% url 'show_auctions' auction.id  auction.title %}">
+                    <div class="each_auction">
+                        <div class="image_container"><img src="{{ auction.photo }}" alt="{{ auction.title }}"></div>
+                        <div class="info_container">
+                            <p class="title">{{ auction.title }}</p>
+                            <p class="description">{{ auction.description }}</p>
+                            <p class="start_bid">Price: {{ auction.start_bid }} $</p>
+                            <p class="created_time">Created at {{ auction.start_date }}</p>
+                        </div>
+                    </div>
+                </a>
+        {% endfor %}
+
+{% endif %}
+
+
+</body>
+</html>
