@@ -1,6 +1,12 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
+    {% if auction_with_category %}
+        <form class="choosing_category" action="{% url 'categories' auction_with_category.category %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="{{ auction_with_category.category }}">
+        </form>
+    {% endif %}
     <h2>Active Listings</h2>
 
 

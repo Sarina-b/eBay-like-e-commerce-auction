@@ -1,0 +1,13 @@
+{% extends "auctions/layout.html" %}
+{% block body %}
+{#    <h2>Active Listings</h2>#}
+    {% for category in all_categories %}
+       <div class="each_category">
+          <form action="{% url 'categories' category %}" method="POST">
+              {% csrf_token %}
+              <input type="submit" value="{{ category }}" name="{{ category }}">
+              <input type="hidden" name="{{ category }}">
+          </form>
+       </div>
+    {% endfor %}
+{% endblock %}
