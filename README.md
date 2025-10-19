@@ -1,5 +1,4 @@
-Overview
-This is the backend for an auction application. It handles user authentication, auctions, bids, comments, and watchlists.
+Overview : This is an auction website that allows users to register, create and view auctions, place bids, add comments, manage watchlists, and filter auctions by category.
 
 Features
 * User registration and login
