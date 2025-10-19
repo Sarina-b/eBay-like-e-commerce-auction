@@ -12,13 +12,9 @@ from .models import List_Auctions
 
 def index(request):
     all_auctions = List_Auctions.objects.all()
-    user_watchlist_items = None
     user_watchlist = Watchlist.objects.get(user=request.user)
-    if not Watchlist_Items.objects.filter(watchlist=user_watchlist).exists():
-        number_of_watchlist_items = 0
-    else:
-        user_watchlist_items = Watchlist_Items.objects.filter(watchlist=user_watchlist)
-        number_of_watchlist_items = user_watchlist_items.count()
+    user_watchlist_items = Watchlist_Items.objects.filter(watchlist=user_watchlist)
+    number_of_watchlist_items = user_watchlist_items.count()
     return render(request, "auctions/index.html",
                   {"all_auctions": all_auctions,
                    "user_watchlist": user_watchlist, "user_watchlist_items": user_watchlist_items,
@@ -27,13 +23,9 @@ def index(request):
 
 def login_view(request):
     if request.method == "POST":
-
-        # Attempt to sign user in
         username = request.POST["username"]
         password = request.POST["password"]
         user = authenticate(request, username=username, password=password)
-
-        # Check if authentication successful
         if user is not None:
             login(request, user)
             return HttpResponseRedirect(reverse("index"))
@@ -54,16 +46,12 @@ def register(request):
     if request.method == "POST":
         username = request.POST["username"]
         email = request.POST["email"]
-
-        # Ensure password matches confirmation
         password = request.POST["password"]
         confirmation = request.POST["confirmation"]
         if password != confirmation:
             return render(request, "auctions/register.html", {
                 "message": "Passwords must match."
             })
-
-        # Attempt to create new user
         try:
             user = User.objects.create_user(username, email, password)
             user.save()
@@ -117,7 +105,7 @@ def bid_and_comment(request, requested_auction_id):
         comment = request.POST["comment"]
         now = timezone.now()
         bid = request.POST["bid"]
-        if bid.strip() != "":
+        if bid:
             bid = float(bid)
             if bid > requested_auction.start_bid:
                 requested_auction.start_bid = bid
@@ -164,24 +152,19 @@ def watchlist_add_or_delete(request, auction_id):
         return redirect(reverse("show_auctions", args=[auction.id, auction.title]))
 
 
-def categories(request, category):
-    auction_with_category = List_Auctions.objects.get(categories=category)
-    all_auctions = auction_with_category
-    user_watchlist_items = None
-    user_watchlist = Watchlist.objects.get(user=request.user)
-    if not Watchlist_Items.objects.filter(watchlist=user_watchlist).exists():
-        number_of_watchlist_items = 0
-    else:
-        user_watchlist_items = Watchlist_Items.objects.filter(watchlist=user_watchlist)
-        number_of_watchlist_items = user_watchlist_items.count()
-    return render(request, "auctions/index.html",
-                  {"all_auctions": all_auctions,
-                   "user_watchlist": user_watchlist, "user_watchlist_items": user_watchlist_items,
-                   "number_of_watchlist_items": number_of_watchlist_items})
-#     all_auctions = List_Auctions.objects.all()
-#    all_categories = []
-# for auction in all_auctions:
-#     all_categories.append(auction.category)
-# return render(request, 'auctions/categories.html', {
-#     "all_categories": all_categories
-# })
+def categories(request):
+    all_categories = List_Auctions.objects.values_list('category', flat=True).distinct()
+    if request.method == 'POST':
+        requested_category = request.POST["category"]
+        if requested_category not in all_categories:
+            messages.error(request, "Invalid category.")
+            return redirect("categories")
+        auctions_with_requested_category = List_Auctions.objects.filter(category=requested_category)
+        return render(request, 'auctions/index.html', {
+            "requested_category": requested_category,
+            "all_auctions": auctions_with_requested_category ,
+            "from_home_or_category": True
+        })
+    return render(request, 'auctions/categories.html',{
+        "all_categories": all_categories
+    })

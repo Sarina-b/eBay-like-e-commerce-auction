@@ -1,14 +1,11 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-    {% if auction_with_category %}
-        <form class="choosing_category" action="{% url 'categories' auction_with_category.category %}" method="POST">
-            {% csrf_token %}
-            <input type="submit" value="{{ auction_with_category.category }}">
-        </form>
-    {% endif %}
+    {% if from_home_or_category %}
+    <h2>Active Listings for '{{ requested_category }}'</h2>
+    {% else %}
     <h2>Active Listings</h2>
-
+    {% endif %}
 
     <div class="all_auctions_container">
         {% for auction in all_auctions %}
@@ -22,8 +19,6 @@
                             <p class="start_bid">Price: {{ auction.start_bid }} $</p>
                             <p class="created_time">Created at {{ auction.start_date }}</p>
                         </div>
-
-
                     </div>
 
                 </a>
