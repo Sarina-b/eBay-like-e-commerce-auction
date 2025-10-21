@@ -138,7 +138,7 @@ commerce/
 ## Author
 
 **Sarina**  
-*Computer Engineering Student* | 💡 *Passionate about Web Development*  
+*Computer Engineering Student* | *Passionate about Web Development*  
 
 **Email:** [sarinababadi900@gmail.com](mailto:sarinababadi900@gmail.com)  
 **GitHub:** [Sarina-b](https://github.com/Sarina-b)
