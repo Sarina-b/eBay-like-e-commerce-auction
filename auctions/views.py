@@ -65,7 +65,7 @@ def register(request):
         return render(request, "auctions/register.html")
 
 
-def create_auction(request):
+def create_listing(request):
     if request.method == "POST":
         start_date = timezone.now()
         user = request.user
@@ -146,10 +146,9 @@ def watchlist_add_or_delete(request, auction_id):
         target_watchlist_Items = Watchlist_Items.objects.get(auction=auction, watchlist=user_watchlist)
         target_watchlist_Items.delete()
         return redirect(reverse("show_auctions", args=[auction.id, auction.title]))
-    else:
-        new_watchlist_items = Watchlist_Items.objects.create(watchlist=user_watchlist, auction=auction)
-        new_watchlist_items.save()
-        return redirect(reverse("show_auctions", args=[auction.id, auction.title]))
+    new_watchlist_items = Watchlist_Items.objects.create(watchlist=user_watchlist, auction=auction)
+    new_watchlist_items.save()
+    return redirect(reverse("show_auctions", args=[auction.id, auction.title]))
 
 
 def categories(request):

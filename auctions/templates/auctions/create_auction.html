@@ -3,36 +3,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create auction</title>
+    <title>Create Listing</title>
     <link rel="stylesheet" href="{% static 'auctions/create_auction.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
 
 </head>
 <body>
-<form class="create_auction_form" action="{% url 'create_auction' %}" method="POST">
+<form class="create_auction_form" action="{% url 'create_listing' %}" method="POST">
     {% csrf_token %}
+    <div class="head_of_form">
+        <h2>Create listing</h2>
+    </div>
     <div class="input_container">
-        <label class="label" for="title_of_auction">Title: </label>
-        <input class="title_of_auction" type="text" name="title" placeholder="title of auction" required>
+        <label class="label" for="input_place">Title: </label>
+        <input class="input_place" type="text" name="title" required>
     </div>
     <div class="input_container">
         <label class="label" for="description_for_auction">Description: </label>
-        <textarea class="description_for_auction" name="description" placeholder=
-                "Enter description for auction" required></textarea>
+        <textarea class="description_for_auction input_place" name="description" required></textarea>
     </div>
     <div class="input_container">
-        <label class="label" for="start_bid">Start bid: </label>
-        <input class="start_bid" type="number" name="start_bid" placeholder="start bid" required>
+        <label class="label" for="input_place">Start bid: </label>
+        <input class="input_place" type="number" name="start_bid" required>
     </div>
     <div class="input_container">
-        <label class="label" for="category_of_auction">Category: </label>
-        <input class="category_of_auction" type="text" name="category" placeholder="category">
+        <label class="label" for="input_place">Category: </label>
+        <input class="input_place" type="text" name="category">
     </div>
     <div class="input_container">
-        <label class="label" for="image_of_auction">Image: </label>
-        <input class="image_of_auction" type="url" name="image_url" placeholder="URL of image">
+        <label class="label" for="input_place">Image: </label>
+        <input class="input_place" type="url" name="image_url">
     </div>
-    <input class="Create_button" type="submit" value="Create auction" name="create button">
+    <div class="button_container">
+        <input class="Create_button" type="submit" value="Create auction" name="create button">
+    </div>
 </form>
 
 </body>

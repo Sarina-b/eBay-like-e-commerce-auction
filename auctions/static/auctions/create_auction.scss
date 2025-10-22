@@ -1,17 +1,111 @@
-.input_containers {
+$my-font: Arial, sans-serif;
+$my_color:#082163;
+%row_flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  height: 100vh;
+  background: radial-gradient(circle at 70% 30%, #0288d1 0%, #3da6d5 15%, #b3e5fc 35%, transparent 60%),
+  radial-gradient(circle at 10% 90%, #5cbaed 0%, #5ec8f6 15%, #b3e5fc 25%, transparent 60%),
+  linear-gradient(135deg, #e1f5fe, #b3e5fc);
+  @extend %row_flex;
+}
+
+.head_of_form {
+  @extend %row_flex;
+  font-size: 30px;
+  text-align: center;
+  color: $my_color;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.input_container {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
+  height: auto;
+  width: 80%;
+  font-family: $my_font;
 }
+
+.label {
+  width: 25%;
+  margin-left: 4%;
+  align-items: flex-start;
+  color: $my_color;
+  font-weight: bolder;
+}
+
+.input_place {
+  font-family: $my_font;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  text-align: start;
+  padding-left: 3%;
+  padding-right: 3%;
+  width: 100%;
+  height: 40px;
+  font-size: 15px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: $my_color solid;
+  border-radius: 18px;
+}
+
+.input_place:hover {
+  transform: scale(1.02);
+}
+
+.description_for_auction {
+  height: 75px;
+  padding-top: 1%;
+}
+
+.button_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 30%;
+}
+
+.Create_button {
+  width: 35%;
+  height: 55%;
+  margin-top: 2%;
+  border-radius: 45px;
+  background-color: $my_color;
+  color: white;
+  border: $my_color solid;
+  font-size: larger;
+  font-family: $my_font;
+}
+
+.Create_button:hover {
+  transform: scale(1.15);
+}
+
 
 .create_auction_form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
   gap: 20px;
+  width: 45%;
   font-family: Arial sans-serif;
-  height: 650px;
+  height: 80%;
+  border: rgba(255, 255, 255, 0.2) solid;
+  border-radius: 20px;
 }
