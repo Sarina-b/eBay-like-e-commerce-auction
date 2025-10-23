@@ -1,6 +1,9 @@
-.status, .heading {
-  color: #082163;
-  font-family: Arial, sans-serif;
+$my_color: #082163;
+$my-font: Arial, sans-serif;
+
+%titles {
+  color: $my_color;
+  font-family: $my-font;
   font-weight: bold;
 }
 
@@ -9,11 +12,12 @@ body {
   padding: 10px;
   height: 100vh;
   background: #a6d6f4;
+
 }
 
 hr {
   height: 2px;
-  background-color: #082163;
+  background-color: $my_color;
 }
 
 .nav {
@@ -29,7 +33,7 @@ hr {
 
 .head_title {
   font-family: Arial, sans-serif;
-  color: #082163;
+  color: $my_color;
   padding-left: 2%;
   font-weight: bolder;
 }
@@ -42,6 +46,7 @@ hr {
   margin-top: 2%;
   margin-right: 7%;
   flex-wrap: nowrap;
+
 }
 
 .nav_right {
@@ -55,19 +60,25 @@ hr {
 }
 
 .nav-link {
-  color: #082163;
-  font-family: Arial, sans-serif;
+  color: $my_color;
+  font-family: $my-font;
   font-size: larger;
   white-space: nowrap;
 }
 
 .nav-link:hover {
   transform: scale(1.12);
-  color: #082163;
+  color: $my_color;
+}
+
+.heading {
+  @extend %titles;
 }
 
 .status {
+  @extend %titles;
   font-size: larger;
+
 }
 
 .each_auction {
@@ -95,6 +106,7 @@ hr {
 }
 
 .all_auctions_container {
+
   justify-content: center;
   display: flex;
   flex-direction: column;
@@ -102,7 +114,7 @@ hr {
 }
 
 .info_container {
-  font-family: Arial, sans-serif;
+  font-family: $my-font;
   font-size: larger;
   display: flex;
   flex-direction: column;
@@ -112,7 +124,7 @@ hr {
   height: 80%;
   border: black;
   font-weight: bolder;
-  color: #082163;
+  color: $my_color;
   text-decoration: none;
 }
 
@@ -166,5 +178,3 @@ hr {
 /*    height: 2px;*/
 /*    background-color: #082163;*/
 /*}*/
-
-/*# sourceMappingURL=styles.css.map */
