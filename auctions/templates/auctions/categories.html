@@ -1,23 +1,25 @@
 {% extends "auctions/layout.html" %}
 {% block body %}
-    {#    <h2>Active Listings</h2>#}
-    <form action="{% url 'categories' %}" method="POST">
+    <form class="form_container" action="{% url 'categories' %}" method="POST">
+        <p class="category_title">Filter by category</p>
         {% csrf_token %}
-        <select list="any category" name="category">
-            <option>Choose your category</option>
-            {% for category in all_categories %}
-                <option value="{{ category }}">{{ category }}</option>
-            {% endfor %}
-        </select>
-        <input class="search_button" type="submit" value="Search">
-    </form>
-    {% if messages %}
-        <div class="messages">
-            {% for message in messages %}
-                <div class="message {{ message.tags }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
+        <div class="category_form">
+            <select class="select_category" list="any category" name="category">
+                <option>any category</option>
+                {% for category in all_categories %}
+                    <option value="{{ category }}">{{ category }}</option>
+                {% endfor %}
+            </select>
+            <input class="search_button" type="submit" value="Search">
         </div>
-    {% endif %}
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="message {{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </form>
 {% endblock %}

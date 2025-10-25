@@ -1,0 +1,17 @@
+@import 'variables';
+@import 'nav';
+@import 'each_auction';
+@import 'category_filter';
+
+body {
+  width: 100%;
+  padding: 10px;
+  height: 100vh;
+  background: #a6d6f4;
+
+}
+
+hr {
+  height: 2px;
+  background-color: $my_color;
+}

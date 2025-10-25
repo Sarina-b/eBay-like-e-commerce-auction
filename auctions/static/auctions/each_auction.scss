@@ -1,75 +1,4 @@
-.status, .heading {
-  color: #082163;
-  font-family: Arial, sans-serif;
-  font-weight: bold;
-}
-
-body {
-  width: 100%;
-  padding: 10px;
-  height: 100vh;
-  background: #a6d6f4;
-}
-
-hr {
-  height: 2px;
-  background-color: #082163;
-}
-
-.nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 30%;
-  height: 100px;
-  width: 100%;
-}
-
-.head_title {
-  font-family: Arial, sans-serif;
-  color: #082163;
-  padding-left: 2%;
-  font-weight: bolder;
-}
-
-.nav_left {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin-top: 2%;
-  margin-right: 7%;
-  flex-wrap: nowrap;
-}
-
-.nav_right {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  flex-wrap: nowrap;
-  font-size: larger;
-  font-weight: bold;
-}
-
-.nav-link {
-  color: #082163;
-  font-family: Arial, sans-serif;
-  font-size: larger;
-  white-space: nowrap;
-}
-
-.nav-link:hover {
-  transform: scale(1.12);
-  color: #082163;
-}
-
-.status {
-  font-size: larger;
-}
-
+@import 'variables';
 .each_auction {
   display: flex;
   flex-direction: row;
@@ -95,6 +24,7 @@ hr {
 }
 
 .all_auctions_container {
+
   justify-content: center;
   display: flex;
   flex-direction: column;
@@ -102,7 +32,7 @@ hr {
 }
 
 .info_container {
-  font-family: Arial, sans-serif;
+  font-family: $my-font;
   font-size: larger;
   display: flex;
   flex-direction: column;
@@ -112,7 +42,7 @@ hr {
   height: 80%;
   border: black;
   font-weight: bolder;
-  color: #082163;
+  color: $my_color;
   text-decoration: none;
 }
 
@@ -152,6 +82,7 @@ hr {
   height: 16%;
   width: 30%;
   border-radius: 5px;
+  margin-bottom: 2%;
 }
 
 .start_bid:hover {
@@ -159,12 +90,17 @@ hr {
 }
 
 .created_time {
-  height: 1%;
+  height: 0.5%;
+  margin-bottom: 0;
+  font-size: smaller;
+  margin-top: 1%;
 }
 
-/*.line{*/
-/*    height: 2px;*/
-/*    background-color: #082163;*/
-/*}*/
-
-/*# sourceMappingURL=styles.css.map */
+.line {
+  border: none;
+  height: 1px;
+  background-color: #a1a3a6;
+  width: 100%;
+  margin-bottom: 0;
+  margin-top: 5%;
+}

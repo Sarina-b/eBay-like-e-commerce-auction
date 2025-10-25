@@ -156,7 +156,7 @@ def categories(request):
     if request.method == 'POST':
         requested_category = request.POST["category"]
         if requested_category not in all_categories:
-            messages.error(request, "Invalid category.")
+            messages.error(request, "Category is not chosen")
             return redirect("categories")
         auctions_with_requested_category = List_Auctions.objects.filter(category=requested_category)
         return render(request, 'auctions/index.html', {

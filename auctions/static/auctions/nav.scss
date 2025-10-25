@@ -1,0 +1,62 @@
+@import 'variables';
+
+%flex_Style {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.nav {
+  @extend %flex_Style;
+  gap: 30%;
+  height: 100px;
+  width: 100%;
+}
+
+.head_title {
+  font-family: Arial, sans-serif;
+  color: $my_color;
+  padding-left: 2%;
+  font-weight: bolder;
+}
+
+.nav_left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 2%;
+  margin-right: 7%;
+
+
+}
+
+.nav_right {
+  @extend %flex_Style;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.nav-link {
+  color: $my_color;
+  font-family: $my-font;
+  font-size: 19px;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  transform: scale(1.12);
+  color: $my_color;
+}
+
+.heading {
+  @extend %titles;
+}
+
+.status {
+  @extend %titles;
+  font-size: larger;
+
+}

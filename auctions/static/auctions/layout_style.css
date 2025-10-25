@@ -1,31 +1,24 @@
-$my_color: #082163;
-$my-font: Arial, sans-serif;
-
-%titles {
-  color: $my_color;
-  font-family: $my-font;
+.status, .heading {
+  color: #082163;
+  font-family: Arial, sans-serif;
   font-weight: bold;
 }
 
-body {
-  width: 100%;
-  padding: 10px;
-  height: 100vh;
-  background: #a6d6f4;
-
+.status, .heading {
+  color: #082163;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
 }
 
-hr {
-  height: 2px;
-  background-color: $my_color;
-}
-
-.nav {
+.nav_right, .nav {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   flex-wrap: nowrap;
   align-items: center;
+}
+
+.nav {
   gap: 30%;
   height: 100px;
   width: 100%;
@@ -33,7 +26,7 @@ hr {
 
 .head_title {
   font-family: Arial, sans-serif;
-  color: $my_color;
+  color: #082163;
   padding-left: 2%;
   font-weight: bolder;
 }
@@ -45,40 +38,33 @@ hr {
   align-items: flex-start;
   margin-top: 2%;
   margin-right: 7%;
-  flex-wrap: nowrap;
-
 }
 
 .nav_right {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  flex-wrap: nowrap;
   font-size: larger;
   font-weight: bold;
 }
 
 .nav-link {
-  color: $my_color;
-  font-family: $my-font;
-  font-size: larger;
+  color: #082163;
+  font-family: Arial, sans-serif;
+  font-size: 19px;
   white-space: nowrap;
 }
 
 .nav-link:hover {
   transform: scale(1.12);
-  color: $my_color;
-}
-
-.heading {
-  @extend %titles;
+  color: #082163;
 }
 
 .status {
-  @extend %titles;
   font-size: larger;
+}
 
+.heading, .status {
+  color: #082163;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
 }
 
 .each_auction {
@@ -106,7 +92,6 @@ hr {
 }
 
 .all_auctions_container {
-
   justify-content: center;
   display: flex;
   flex-direction: column;
@@ -114,7 +99,7 @@ hr {
 }
 
 .info_container {
-  font-family: $my-font;
+  font-family: Arial, sans-serif;
   font-size: larger;
   display: flex;
   flex-direction: column;
@@ -124,7 +109,7 @@ hr {
   height: 80%;
   border: black;
   font-weight: bolder;
-  color: $my_color;
+  color: #082163;
   text-decoration: none;
 }
 
@@ -164,6 +149,7 @@ hr {
   height: 16%;
   width: 30%;
   border-radius: 5px;
+  margin-bottom: 2%;
 }
 
 .start_bid:hover {
@@ -171,10 +157,101 @@ hr {
 }
 
 .created_time {
-  height: 1%;
+  height: 0.5%;
+  margin-bottom: 0;
+  font-size: smaller;
+  margin-top: 1%;
 }
 
-/*.line{*/
-/*    height: 2px;*/
-/*    background-color: #082163;*/
-/*}*/
+.line {
+  border: none;
+  height: 1px;
+  background-color: #a1a3a6;
+  width: 100%;
+  margin-bottom: 0;
+  margin-top: 5%;
+}
+
+.heading, .status {
+  color: #082163;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+
+.category_title, .category_form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.category_form {
+  height: 10%;
+  gap: 3%;
+  width: 50%;
+}
+
+.select_category {
+  width: 100%;
+  border-radius: 10px;
+  padding-left: 1%;
+  height: 80%;
+}
+
+.search_button {
+  width: 35%;
+  border-radius: 5px;
+  background-color: #082163;
+  color: white;
+  font-size: larger;
+  font-family: Arial, sans-serif;
+  border: #082163 solid;
+}
+
+.search_button:hover {
+  transform: scale(1.05);
+}
+
+.category_title {
+  width: 60%;
+  height: 10%;
+  font-family: Arial, sans-serif;
+  font-size: 45px;
+  color: #082163;
+  margin-top: 5%;
+}
+
+.form_container {
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  gap: 10%;
+}
+
+.message {
+  color: red;
+  font-family: Arial, sans-serif;
+  font-size: large;
+  font-weight: bolder;
+}
+
+.select_category:hover {
+  transform: scale(1.02);
+}
+
+body {
+  width: 100%;
+  padding: 10px;
+  height: 100vh;
+  background: #a6d6f4;
+}
+
+hr {
+  height: 2px;
+  background-color: #082163;
+}
+
+/*# sourceMappingURL=layout_style.css.map */
