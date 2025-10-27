@@ -55,6 +55,10 @@ class Watchlist(models.Model):
     def __str__(self):
         return f"{self.user} + {self.id}"
 
+    @property
+    def count_items(self):
+        return self.Watchlist_Items.count()
+
 
 class Watchlist_Items(models.Model):
     watchlist = models.ForeignKey(Watchlist, on_delete=models.CASCADE, related_name='Watchlist_Items')

@@ -13,12 +13,9 @@ from .models import List_Auctions
 def index(request):
     all_auctions = List_Auctions.objects.all()
     user_watchlist = Watchlist.objects.get(user=request.user)
-    user_watchlist_items = Watchlist_Items.objects.filter(watchlist=user_watchlist)
-    number_of_watchlist_items = user_watchlist_items.count()
     return render(request, "auctions/index.html",
                   {"all_auctions": all_auctions,
-                   "user_watchlist": user_watchlist, "user_watchlist_items": user_watchlist_items,
-                   "number_of_watchlist_items": number_of_watchlist_items})
+                   "number_of_watchlist_items": user_watchlist.count_items})
 
 
 def login_view(request):
@@ -136,7 +133,7 @@ def show_watchlist(request):
     else:
         watchlist = None
     return render(request, 'auctions/watchlist.html',
-                  {"watchlist": watchlist})
+                  {"watchlist": watchlist , "number_of_watchlist_items": user_watchlist.count_items})
 
 
 def watchlist_add_or_delete(request, auction_id):
@@ -153,6 +150,7 @@ def watchlist_add_or_delete(request, auction_id):
 
 def categories(request):
     all_categories = List_Auctions.objects.values_list('category', flat=True).distinct()
+    user_watchlist = Watchlist.objects.get(user=request.user)
     if request.method == 'POST':
         requested_category = request.POST["category"]
         if requested_category not in all_categories:
@@ -161,9 +159,11 @@ def categories(request):
         auctions_with_requested_category = List_Auctions.objects.filter(category=requested_category)
         return render(request, 'auctions/index.html', {
             "requested_category": requested_category,
-            "all_auctions": auctions_with_requested_category ,
-            "from_home_or_category": True
+            "all_auctions": auctions_with_requested_category,
+            "from_home_or_category": True,
+            "number_of_watchlist_items": user_watchlist.count_items
         })
-    return render(request, 'auctions/categories.html',{
-        "all_categories": all_categories
+    return render(request, 'auctions/categories.html', {
+        "all_categories": all_categories ,
+        "number_of_watchlist_items": user_watchlist.count_items
     })
