@@ -1,0 +1,38 @@
+@import 'auction_info';
+@import 'bids_and_comments';
+@import 'close_auction';
+
+body {
+  background: radial-gradient(circle at 70% 30%, #a1d9f8 0%, #c0e1f1 15%, #b3e5fc 35%, transparent 60%),
+  radial-gradient(circle at 10% 90%, #8cd3fa 0%, #b7deef 15%, #b3e5fc 25%, transparent 60%),
+  linear-gradient(135deg, #36b7f1, #47aeda);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+}
+
+.message {
+  color: red;
+  font-family: Arial sans-serif;
+}
+
+.go_to_home_link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 15%;
+  height: 40px;
+  background-color: #46aad6;
+  font-size: larger;
+  text-decoration: none;
+  color: white;
+  margin-top: 5%;
+  border-radius: 4px;
+}
+
+.go_to_home_link:hover {
+  transform: scale(1.15);
+}
