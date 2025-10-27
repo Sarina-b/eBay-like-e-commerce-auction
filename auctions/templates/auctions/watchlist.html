@@ -1,29 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Watchlist</title>
-</head>
-<body>
-{% if not watchlist %}
-    <div>No list in you watchlist</div>
+{% extends "auctions/layout.html" %}
+{% load static %}
+
+{% block title %}Watchlist{% endblock %}
+{% block body %}
+    {% if not watchlist %}
+        <div class="no_watchlist_container">
+            <div class="no_watchlist">No list in you watchlist</div>
+            <img class="nothing_here_img" src="{% static 'auctions/nothing_here.png' %}">
+        </div>
     {% else %}
-           {% for auction in watchlist %}
-                <a href="{% url 'show_auctions' auction.id  auction.title %}">
-                    <div class="each_auction">
-                        <div class="image_container"><img src="{{ auction.photo }}" alt="{{ auction.title }}"></div>
-                        <div class="info_container">
-                            <p class="title">{{ auction.title }}</p>
-                            <p class="description">{{ auction.description }}</p>
-                            <p class="start_bid">Price: {{ auction.start_bid }} $</p>
-                            <p class="created_time">Created at {{ auction.start_date }}</p>
+        <h2 class="watchlist_heading">Your watchlist</h2>
+        <div class="all_watchlist">
+            {% for auction in watchlist %}
+                <div class="watchlist_container">
+                    <a class="link_info" href="{% url 'show_auctions' auction.id  auction.title %}">
+                        <div class="watchlist_info">
+                            <div class="image_container_watchlist"><img src="{{ auction.photo }}"
+                                                                        alt="{{ auction.title }}">
+                            </div>
+                            <div class="info_container">
+                                <p class="title_watchlist">{{ auction.title }}</p>
+                                <p class="start_bid_watchlist">Price: {{ auction.start_bid }} $</p>
+                                <hr class="line">
+                                <p class="created_time">Created at {{ auction.start_date }}</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-        {% endfor %}
+                    </a>
 
-{% endif %}
+                </div>
+            {% endfor %}
+
+        </div>
+
+    {% endif %}
 
 
-</body>
-</html>
+{% endblock %}
