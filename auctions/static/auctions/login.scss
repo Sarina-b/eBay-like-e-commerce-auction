@@ -1,0 +1,49 @@
+@import 'variables';
+
+.login_form_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.login_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 40%;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: rgba(255, 255, 255, 0.2) solid;
+  border-radius: 20px;
+  font-family: $my-font;
+  color: $my_color;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
+}
+
+.btn {
+  background-color: $my_color;
+  width: 30%;
+
+}
+
+.label_for_login {
+  width: 50%;
+}
+
+.form-control_input {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+
+}

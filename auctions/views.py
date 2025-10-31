@@ -12,10 +12,15 @@ from .models import List_Auctions
 
 def index(request):
     all_auctions = List_Auctions.objects.all()
-    user_watchlist = Watchlist.objects.get(user=request.user)
-    return render(request, "auctions/index.html",
-                  {"all_auctions": all_auctions,
-                   "number_of_watchlist_items": user_watchlist.count_items})
+    if (not request.user.is_authenticated):
+        return render(request, "auctions/index.html", {
+            "all_auctions": all_auctions
+        })
+    else:
+        user_watchlist = Watchlist.objects.get(user=request.user)
+        return render(request, "auctions/index.html",
+                      {"all_auctions": all_auctions,
+                       "number_of_watchlist_items": user_watchlist.count_items})
 
 
 def login_view(request):
@@ -133,7 +138,7 @@ def show_watchlist(request):
     else:
         watchlist = None
     return render(request, 'auctions/watchlist.html',
-                  {"watchlist": watchlist , "number_of_watchlist_items": user_watchlist.count_items})
+                  {"watchlist": watchlist, "number_of_watchlist_items": user_watchlist.count_items})
 
 
 def watchlist_add_or_delete(request, auction_id):
@@ -164,6 +169,6 @@ def categories(request):
             "number_of_watchlist_items": user_watchlist.count_items
         })
     return render(request, 'auctions/categories.html', {
-        "all_categories": all_categories ,
+        "all_categories": all_categories,
         "number_of_watchlist_items": user_watchlist.count_items
     })
