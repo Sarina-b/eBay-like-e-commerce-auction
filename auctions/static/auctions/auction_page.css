@@ -37,12 +37,23 @@
 
 .description {
   text-align: left;
-  font-family: Arial, sans-serif;
   width: 100%;
   height: auto;
-  color: #082163;
   /*font-weight: ;*/
   font-size: larger;
+}
+
+.category_and_description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  align-items: flex-start;
+  width: 100%;
+  color: #082163;
+  font-family: Arial, sans-serif;
+  gap: 50px;
+  font-weight: bolder;
 }
 
 .sold_info_container {
@@ -57,6 +68,36 @@
   color: white;
   font-family: Arial sans-serif;
   font-size: larger;
+}
+
+.bid, .comment {
+  width: 70%;
+  font-family: Arial, sans-serif;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  text-align: start;
+  padding-left: 3%;
+  padding-right: 3%;
+  font-size: 15px;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: #082163 solid;
+  border-radius: 18px;
+  color: #082163;
+}
+
+.bid:hover, .comment:hover {
+  transform: scale(1.02);
+}
+
+.bid_container, .comment_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  width: 50%;
 }
 
 .current_bid {
@@ -74,42 +115,59 @@
   border-radius: 20px;
 }
 
-.comment_container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+.labels {
+  color: #082163;
+  font-weight: bolder;
+  font-size: larger;
 }
 
 .auction_bid_and_comment {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   gap: 30px;
-}
-
-.bid_container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+  margin-left: 5%;
+  height: 30%;
+  width: 100%;
 }
 
 .place_bid_button {
-  background-color: #46aad6;
+  background-color: #082163;
   border-radius: 4px;
-  width: 70%;
-  height: 40px;
+  width: 15%;
+  height: 80px;
   color: white;
   font-size: larger;
   font-family: Arial, sans-serif;
 }
 
+.comment {
+  height: 80px;
+}
+
+.bid {
+  height: 40px;
+}
+
 .place_bid_button:hover {
   transform: scale(1.05);
+}
+
+.auction_comments {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: #e8e7e7;
+  height: 20%;
+  border-radius: 10px;
+  margin-left: 5%;
+}
+
+.auction_comments:hover {
+  transform: scale(1.02);
 }
 
 .close_auction_link {
@@ -247,25 +305,6 @@ body {
 .message {
   color: red;
   font-family: Arial sans-serif;
-}
-
-.go_to_home_link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  width: 15%;
-  height: 40px;
-  background-color: #46aad6;
-  font-size: larger;
-  text-decoration: none;
-  color: white;
-  margin-top: 5%;
-  border-radius: 4px;
-}
-
-.go_to_home_link:hover {
-  transform: scale(1.15);
 }
 
 /*# sourceMappingURL=auction_page.css.map */

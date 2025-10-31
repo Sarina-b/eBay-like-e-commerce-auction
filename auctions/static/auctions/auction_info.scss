@@ -36,12 +36,22 @@
 }
 .description{
     text-align: left;
-    font-family: Arial, sans-serif;
     width: 100%;
     height: auto;
-    color: #082163;
     /*font-weight: ;*/
     font-size: larger;
+}
+.category_and_description{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    align-items: flex-start;
+    width: 100%;
+    color: #082163;
+    font-family: Arial, sans-serif;
+    gap: 50px;
+    font-weight: bolder;
 }
 .sold_info_container {
     display: flex;

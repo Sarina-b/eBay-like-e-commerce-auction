@@ -17,22 +17,3 @@ body {
   color: red;
   font-family: Arial sans-serif;
 }
-
-.go_to_home_link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  width: 15%;
-  height: 40px;
-  background-color: #46aad6;
-  font-size: larger;
-  text-decoration: none;
-  color: white;
-  margin-top: 5%;
-  border-radius: 4px;
-}
-
-.go_to_home_link:hover {
-  transform: scale(1.15);
-}
