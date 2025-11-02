@@ -1,0 +1,108 @@
+@import 'variables';
+
+%column_center_flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.form_container {
+  @extend %column_center_flex;
+  margin-top: 2%;
+  width: 100%;
+}
+
+.title_form {
+  font-size: 40px;
+  font-weight: bolder;
+}
+
+.login_register_form {
+  @extend %column_center_flex;
+  gap: 20px;
+  width: 35%;
+  height: 400px;
+  @extend %blur_background;
+  border: rgba(255, 255, 255, 0.2) solid;
+  border-radius: 20px;
+  font-family: $my-font;
+  color: $my_color;
+}
+
+.just_register {
+  height: 500px;
+  width: 40%;
+}
+
+.form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 30%;
+  align-items: center;
+  height: 10%;
+}
+
+.btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 10%;
+  background-color: $my_color;
+  width: 30%;
+  border: $my-color solid;
+  text-align: center;
+  color: white;
+  margin-bottom: 2%;
+
+}
+
+.btn_register {
+  height: 8%;
+}
+
+.btn:hover {
+  transform: scale(1.02);
+  color: white;
+}
+
+.label_for_form {
+  width: 20%;
+  font-weight: bolder;
+}
+
+.register_label {
+  width: 26%;
+}
+
+.form_control_input {
+  border-radius: 5px;
+  height: 70%;
+  border: none;
+  width: 50%;
+  background-color: #d1ecfa;
+
+}
+
+.form_control_input:hover {
+  border: inherit;
+}
+
+.form_control_input:focus {
+  border: white solid;
+}
+
+.footer {
+  color: $my-color;
+  font-family: $my-font;
+  font-size: larger;
+}
+
+.link {
+  color: $my_color;
+  text-decoration: underline;
+}

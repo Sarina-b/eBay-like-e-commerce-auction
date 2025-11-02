@@ -1,5 +1,6 @@
 $my-font: Arial, sans-serif;
-$my_color:#082163;
+$my_color: #082163;
+@import "variables";
 %row_flex {
   display: flex;
   flex-direction: row;
@@ -45,8 +46,7 @@ body {
 
 .input_place {
   font-family: $my_font;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
+  @extend %blur_background;
   text-align: start;
   padding-left: 3%;
   padding-right: 3%;
@@ -100,12 +100,11 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
+  @extend %blur_background;
+   border: rgba(255, 255, 255, 0.2) solid;
   gap: 20px;
   width: 45%;
   font-family: Arial sans-serif;
   height: 80%;
-  border: rgba(255, 255, 255, 0.2) solid;
   border-radius: 20px;
 }

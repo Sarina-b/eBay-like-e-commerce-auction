@@ -1,3 +1,8 @@
+.create_auction_form, .input_place {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
 .head_of_form, body {
   display: flex;
   flex-direction: row;
@@ -39,8 +44,6 @@ body {
 
 .input_place {
   font-family: Arial, sans-serif;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
   text-align: start;
   padding-left: 3%;
   padding-right: 3%;
@@ -93,13 +96,11 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
+  border: rgba(255, 255, 255, 0.2) solid;
   gap: 20px;
   width: 45%;
   font-family: Arial sans-serif;
   height: 80%;
-  border: rgba(255, 255, 255, 0.2) solid;
   border-radius: 20px;
 }
 

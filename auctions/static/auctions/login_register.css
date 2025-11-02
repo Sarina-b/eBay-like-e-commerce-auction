@@ -1,6 +1,4 @@
-@import 'variables';
-
-.login_form_container {
+.form_container {
   display: flex;
   margin-top: 4%;
   flex-direction: column;
@@ -9,7 +7,7 @@
   width: 100%;
 }
 
-.login_form {
+.login_register_form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,8 +19,8 @@
   backdrop-filter: blur(10px);
   border: rgba(255, 255, 255, 0.2) solid;
   border-radius: 20px;
-  font-family: $my-font;
-  color: $my_color;
+  font-family: Arial, sans-serif;
+  color: #082163;
   isolation: isolate;
 }
 
@@ -42,12 +40,12 @@
   justify-content: center;
   align-items: center;
   height: 10%;
-  background-color: $my_color;
+  background-color: #082163;
   width: 30%;
-  border: $my-color solid;
+  border: #082163 solid;
   text-align: center;
   color: white;
-
+  margin-bottom: 2%;
 }
 
 .btn:hover {
@@ -55,7 +53,7 @@
   color: white;
 }
 
-.label_for_login {
+.label_for_form {
   width: 20%;
   font-weight: bolder;
 }
@@ -64,7 +62,6 @@
   border-radius: 5px;
   height: 80%;
   border: none;
-
 }
 
 .form-control_input:hover {
@@ -76,16 +73,14 @@
 }
 
 .footer {
-  color: $my-color;
-  font-family: $my-font;
+  color: #082163;
+  font-family: Arial, sans-serif;
   font-size: larger;
 }
 
 .link {
-  color: $my_color;
+  color: #082163;
   text-decoration: underline;
 }
 
-
-
-
+/*# sourceMappingURL=login_register.css.map */
