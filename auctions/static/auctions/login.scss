@@ -2,6 +2,7 @@
 
 .login_form_container {
   display: flex;
+  margin-top: 4%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -14,7 +15,7 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
-  width: 40%;
+  width: 35%;
   height: 400px;
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
@@ -22,28 +23,69 @@
   border-radius: 20px;
   font-family: $my-font;
   color: $my_color;
+  isolation: isolate;
 }
 
 .form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 30%;
+  align-items: center;
+  height: 10%;
+}
+
+.btn {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 10%;
-}
-
-.btn {
+  height: 10%;
   background-color: $my_color;
   width: 30%;
+  border: $my-color solid;
+  text-align: center;
+  color: white;
 
+}
+
+.btn:hover {
+  transform: scale(1.02);
+  color: white;
 }
 
 .label_for_login {
-  width: 50%;
+  width: 20%;
+  font-weight: bolder;
 }
 
 .form-control_input {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
+  border-radius: 5px;
+  height: 80%;
+  border: none;
 
 }
+
+.form-control_input:hover {
+  border: inherit;
+}
+
+.form-control_input:focus {
+  border: white solid;
+}
+
+.footer {
+  color: $my-color;
+  font-family: $my-font;
+  font-size: larger;
+}
+
+.link {
+  color: $my_color;
+  text-decoration: underline;
+}
+
+
+
+
