@@ -49,31 +49,31 @@
                 at {{ requested_auction.start_date }}
             </div>
         </div>
-
     </div>
-    <div class="current_bid">{{ requested_auction.start_bid }} $</div>
+    <div class="current_bid"><p class="money">{{ requested_auction.start_bid }} $</p></div>
     {% if requested_auction.active %}
-        <form class="auction_bid_and_comment" action="{% url 'bid_and_comment' requested_auction.id %}" method="POST">
-        {% csrf_token %}
-        <div class="comment_container">
-            <label class="labels" for="comment">Comment: </label>
-            <input class="comment" type="text" placeholder="comment your opinion about this stuff" name="comment">
-        </div>
-        <div class="bid_container">
-            <label class="labels" for="bid">Bid: </label>
-            <input class="bid" type="number" placeholder="your recommended bid" name="bid">
+        <div class="auction_bid_and_comment">
+            <form class="bid_container" action="{% url 'place_bid' requested_auction.id %}" method="POST">
+                {% csrf_token %}
+                <label class="labels_bid_comment" for="bid">Bid: </label>
+                <input class="bid" type="number" placeholder="your recommended bid" name="bid">
+                <input class="place_button" type="submit" value="Place Bid" name="placing_bid">
+            </form>
+            <form class="comment_container" action="{% url 'place_comment' requested_auction.id %}" method="POST">
+                {% csrf_token %}
+                <label class="labels_bid_comment" for="comment">Comment: </label>
+                <input class="comment" type="text" placeholder="comment your opinion about this stuff" name="comment">
+                <input class="place_button" type="submit" value="Place Comment" name="placing_comment">
+            </form>
         </div>
         {% if owner_of_auction %}
             <input class="place_bid_button" type="submit" value="Place Bid" name="placing_bid" disabled>
             <div class="not_allowed_container">Owner is not allowed to place comment and bid</div>
-        {% else %}
-            <input class="place_bid_button" type="submit" value="Place Bid" name="placing_bid">
         {% endif %}
 
     {% else %}
         <div class="not_allowed_container">It is sold {{ requested_auction.start_bid }} $</div>
     {% endif %}
-    </form>
     {% if messages %}
         <div class="messages">
             {% for message in messages %}

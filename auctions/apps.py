@@ -5,6 +5,5 @@ class AuctionsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'auctions'
 
-
-def ready(self):
-    import auctions.signals
+    def ready(self):
+        import auctions.signals

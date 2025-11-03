@@ -64,10 +64,11 @@
   background-color: #ea4747;
   border-radius: 5px;
   width: 40%;
-  height: 40px;
+  height: 50px;
   color: white;
   font-family: Arial sans-serif;
   font-size: larger;
+  margin-left: 5%;
 }
 
 .bid, .comment {
@@ -96,21 +97,22 @@
 
 .bid_container, .comment_container {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: center;
   align-items: flex-start;
-  gap: 10px;
-  width: 50%;
+  gap: 5%;
+  width: 60%;
+  text-align: start;
 }
 
 .current_bid {
-  margin-left: 50%;
+  margin-left: 20%;
   background-color: green;
-  width: 15%;
-  height: 8%;
+  width: 14%;
+  height: 5%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   color: white;
   font-size: larger;
@@ -118,10 +120,24 @@
   border-radius: 20px;
 }
 
-.labels {
+.money {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.labels_bid_comment {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 8%;
   color: #082163;
   font-weight: bolder;
   font-size: larger;
+  width: 20%;
 }
 
 .auction_bid_and_comment {
@@ -130,19 +146,19 @@
   justify-content: flex-start;
   align-items: flex-start;
   gap: 30px;
-  margin-left: 5%;
   height: 30%;
   width: 100%;
 }
 
-.place_bid_button {
+.place_button {
   background-color: #082163;
   border-radius: 4px;
-  width: 15%;
-  height: 80px;
+  width: 30%;
+  height: 35px;
   color: white;
   font-size: larger;
   font-family: Arial, sans-serif;
+  border: #082163 solid;
 }
 
 .comment {
@@ -153,7 +169,7 @@
   height: 40px;
 }
 
-.place_bid_button:hover {
+.place_button:hover {
   transform: scale(1.05);
 }
 
@@ -297,6 +313,11 @@
   transform: scale(1.15);
 }
 
+.comment, .bid {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
 body {
   background: radial-gradient(circle at 70% 30%, #a1d9f8 0%, #c0e1f1 15%, #b3e5fc 35%, transparent 60%), radial-gradient(circle at 10% 90%, #8cd3fa 0%, #b7deef 15%, #b3e5fc 25%, transparent 60%), linear-gradient(135deg, #36b7f1, #47aeda);
   display: flex;
@@ -306,8 +327,20 @@ body {
 }
 
 .message {
-  color: red;
-  font-family: Arial sans-serif;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.messages {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: #f63131;
+  min-width: 20%;
+  height: 10%;
+  margin-left: 6%;
+  border-radius: 3px;
 }
 
 /*# sourceMappingURL=auction_page.css.map */

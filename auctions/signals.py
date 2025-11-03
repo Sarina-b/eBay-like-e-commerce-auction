@@ -7,4 +7,4 @@ from .models import User, Watchlist
 def create_watchlist(sender, instance, created, **kwargs):
     if created:
         Watchlist.objects.create(user=instance)
-
+        print('Watchlist created!')

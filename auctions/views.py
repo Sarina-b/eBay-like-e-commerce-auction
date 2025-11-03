@@ -103,27 +103,35 @@ def show_auctions(request, auction_id, auction_title):
 
 
 @login_required
-def bid_and_comment(request, requested_auction_id):
+def place_bid(request, requested_auction_id):
     requested_auction = List_Auctions.objects.get(pk=requested_auction_id)
     if request.method == "POST":
-        comment = request.POST["comment"]
-        now = timezone.now()
         bid = request.POST["bid"]
         if bid:
             bid = float(bid)
             if bid > requested_auction.start_bid:
                 requested_auction.start_bid = bid
                 requested_auction.save()
-                return redirect(reverse("show_auctions", args=[requested_auction.id, requested_auction.title]))
             else:
                 messages.error(request, "Your suggested bid should be more than the latest bid.")
-        if comment.strip() != "":
+        else:
+            messages.error(request, "Please enter a bid.")
+    return redirect(reverse("show_auctions", args=[requested_auction.id, requested_auction.title]))
+
+
+@login_required
+def place_comment(request, requested_auction_id):
+    requested_auction = List_Auctions.objects.get(pk=requested_auction_id)
+    if request.method == "POST":
+        comment = request.POST["comment"]
+        now = timezone.now()
+        if comment:
             new_comment = Comment.objects.create(user=request.user, auction=requested_auction, text=comment,
                                                  written_at=now)
             new_comment.save()
-            return redirect(reverse("show_auctions", args=[requested_auction.id, requested_auction.title]))
-    else:
-        messages.error(request, "Comment or bid is empty.")
+        else:
+            messages.error(request, "Please enter a comment.")
+    return redirect(reverse("show_auctions", args=[requested_auction.id, requested_auction.title]))
 
 
 def close_auction(request, auction_id):

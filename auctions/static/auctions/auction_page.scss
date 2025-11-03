@@ -1,6 +1,7 @@
 @import 'auction_info';
 @import 'bids_and_comments';
 @import 'close_auction';
+@import "variables";
 
 body {
   background: radial-gradient(circle at 70% 30%, #a1d9f8 0%, #c0e1f1 15%, #b3e5fc 35%, transparent 60%),
@@ -14,6 +15,20 @@ body {
 }
 
 .message {
-  color: red;
-  font-family: Arial sans-serif;
+  color: white;
+  font-family: $my-font;
+}
+
+.messages {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: #f63131;
+  min-width: 20%;
+  height: 10%;
+  margin-left: 6%;
+  border-radius: 3px;
+
+
 }
