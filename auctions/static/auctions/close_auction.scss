@@ -1,126 +1,106 @@
-.close_auction_link {
-    display: flex;
-    flex-direction: row;
-    background-color: #aad8f8;
-    color: #082163;
-    text-align: center;
-    border-radius: 5px;
-    text-decoration: none;
-    justify-content: center;
-    border: #082163 solid 3px;
-    align-items: center;
-    height: 35px;
-    width: 10%;
-    margin-left: 80%;
-    margin-top: 1.5%;
-    font-size: larger;
-    font-family: Arial sans-serif;
-
-
-}
-
-.close_auction_link:hover {
-    transform: scale(1.15);
-}
+@import "variables";
 
 .closing_auction_model {
-    display: none;
-    left: 50%;
-    top: 50%;
-    width: 40%;
-    height: 50%;
-    background: white;
-    position: fixed;
-    transform: translate(-50%, -50%);
-    border-radius: 7px;
+  display: none;
+  left: 50%;
+  top: 50%;
+  width: 40%;
+  height: 50%;
+  background: white;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  border-radius: 7px;
 }
 
 #closeWindow:target {
-    display: block;
+  display: block;
 }
 
 .head_of_window {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    /*height: 10%;*/
+  @extend %row_center_flex;
+  gap: 20px;
 }
 
 .title_of_model {
-    position: absolute;
-    font-family: Arial sans-serif;
-    margin-top: 5%;
-    font-size: 30px;
-    color: #082163;
+  position: absolute;
+  font-family: $my-font;
+  margin-top: 5%;
+  font-size: 30px;
+  color: $my_color;
 }
 
 .close_button {
-    position: relative;
-    left: 40%;
-    margin-top: 2%;
-    font-size: 40px;
-    text-decoration: none;
-    color: #082163;
+  position: relative;
+  left: 40%;
+  margin-top: 2%;
+  font-size: 40px;
+  text-decoration: none;
+  color: $my_color;
 
 }
 
 .close_button:hover {
-    transform: scale(1.25);
+  transform: scale(1.25);
 }
 
 .body_of_model {
-    margin-top: 10%;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    justify-content: center;
-    align-items: center;
-    color: #082163;
-    font-size: 20px;
+  margin-top: 10%;
+  @extend %column_center_flex ;
+  gap: 5px;
+  color: $my_color;
+  font-size: 20px;
 }
 
 .footer_of_model {
-    margin-top: 15%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 50px;
+  margin-top: 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 50px;
 }
 
-.dont_close_auction {
-    display: flex;
-    background-color: #082163;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    border-radius: 3px;
-    width: 15%;
-    height: 40px;
-    text-decoration: none;
-    font-family: Arial sans-serif;
-    font-size: larger;
-}
-
-.close_auction {
-    display: flex;
-    background-color: #082163;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    border-radius: 3px;
-    width: 15%;
-    height: 40px;
-    text-decoration: none;
-    font-family: Arial sans-serif;
-    font-size: larger;
+.dont_close_auction, .close_auction {
+  background-color: $my_color;
+  @extend %row_center_flex;
+  color: white;
+  border-radius: 3px;
+  width: 15%;
+  height: 40px;
+  text-decoration: none;
+  font-family: $my-font;
+  font-size: larger;
 }
 
 .close_auction:hover {
-    transform: scale(1.15);
+  transform: scale(1.15);
 }
 
 .dont_close_auction:hover {
-    transform: scale(1.15);
+  transform: scale(1.15);
+}
+
+.close_auction_link {
+  @extend %row_center_flex;
+  background-color: $my_color;
+  border: $my_color solid 3px;
+  color: white;
+  width: 30%;
+  border-radius: 5px;
+  font-size: medium;
+  font-family: $my-font;
+  text-decoration: none;
+  height: 35px;
+  margin-top: 1.5%;
+}
+
+.close_auction_link:hover {
+  transform: scale(1.02);
+}
+
+.close_auction_div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 55%;
 }

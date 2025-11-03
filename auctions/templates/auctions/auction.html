@@ -9,17 +9,15 @@
 
 </head>
 <body>
-<form class="watchlist_link_container" action="{% url 'watchlist_add_or_delete' requested_auction.id %}" method="POST">
+<form class="watchlist_link_container" action="{% url 'watchlist_add_or_delete' requested_auction.id %}"
+      method="POST">
     {% csrf_token %}
     {% if in_watchlist_items %}
-        <input class="remove_from_watchlist" type="submit" value="Remove from my watchlist">
+        <input class="watchlist_change" type="submit" value="Remove from my watchlist">
     {% else %}
-        <input class="add_to_watchlist" type="submit" value="Add to my watchlist">
+        <input class="watchlist_change" type="submit" value="Add to my watchlist">
     {% endif %}
 </form>
-{% if owner_of_auction %}
-    <a href="#closeWindow" class="close_auction_link">Close auction</a>
-{% endif %}
 <div id="closeWindow" class="closing_auction_model">
     <div class="head_of_window">
         <h3 class="title_of_model">Close auction confirmation</h3>
@@ -66,6 +64,11 @@
                 <input class="place_button" type="submit" value="Place Comment" name="placing_comment">
             </form>
         </div>
+        {% if owner_of_auction %}
+            <div class="close_auction_div">
+                <a href="#closeWindow" class="close_auction_link">Close auction</a>
+            </div>
+        {% endif %}
     {% else %}
         <div class="not_allowed_container">It is sold {{ requested_auction.start_bid }} $</div>
     {% endif %}

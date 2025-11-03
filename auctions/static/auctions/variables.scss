@@ -11,3 +11,18 @@ $my-font: Arial, sans-serif;
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
 }
+
+%column_center_flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+%row_center_flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}

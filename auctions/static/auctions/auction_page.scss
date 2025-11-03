@@ -2,6 +2,8 @@
 @import 'bids_and_comments';
 @import 'close_auction';
 @import "variables";
+@import "watchlist";
+
 
 body {
   background: radial-gradient(circle at 70% 30%, #a1d9f8 0%, #c0e1f1 15%, #b3e5fc 35%, transparent 60%),
@@ -29,6 +31,4 @@ body {
   height: 10%;
   margin-left: 6%;
   border-radius: 3px;
-
-
 }

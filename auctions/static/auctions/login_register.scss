@@ -1,13 +1,4 @@
 @import 'variables';
-
-%column_center_flex {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-}
-
 .form_container {
   @extend %column_center_flex;
   margin-top: 2%;
