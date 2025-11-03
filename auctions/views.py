@@ -12,7 +12,7 @@ from .models import List_Auctions
 
 def index(request):
     all_auctions = List_Auctions.objects.all()
-    if (not request.user.is_authenticated):
+    if not request.user.is_authenticated:
         return render(request, "auctions/index.html", {
             "all_auctions": all_auctions
         })
@@ -67,6 +67,7 @@ def register(request):
         return render(request, "auctions/register.html")
 
 
+@login_required
 def create_listing(request):
     if request.method == "POST":
         start_date = timezone.now()
@@ -89,11 +90,12 @@ def show_auctions(request, auction_id, auction_title):
     owner_of_auction = False
     in_watchlist_items = False
     requested_auction = List_Auctions.objects.get(pk=auction_id, title=auction_title)
-    if request.user == requested_auction.user:
-        owner_of_auction = True
-    watchlist = Watchlist.objects.get(user=request.user)
-    if requested_auction.Watchlist_Items.filter(watchlist=watchlist, auction=requested_auction).exists():
-        in_watchlist_items = True
+    if request.user.is_authenticated:
+        if request.user == requested_auction.user:
+            owner_of_auction = True
+        watchlist = Watchlist.objects.get(user=request.user)
+        if requested_auction.Watchlist_Items.filter(watchlist=watchlist, auction=requested_auction).exists():
+            in_watchlist_items = True
     return render(request, 'auctions/auction.html',
                   {"requested_auction": requested_auction,
                    "owner_of_auction": owner_of_auction,
@@ -131,6 +133,7 @@ def close_auction(request, auction_id):
     return redirect(reverse("show_auctions", args=[auction.id, auction.title]))
 
 
+@login_required
 def show_watchlist(request):
     user_watchlist = Watchlist.objects.get(user=request.user)
     if Watchlist_Items.objects.filter(watchlist=user_watchlist).exists():
@@ -141,6 +144,7 @@ def show_watchlist(request):
                   {"watchlist": watchlist, "number_of_watchlist_items": user_watchlist.count_items})
 
 
+@login_required
 def watchlist_add_or_delete(request, auction_id):
     auction = List_Auctions.objects.get(pk=auction_id)
     user_watchlist = Watchlist.objects.get(user=request.user)
@@ -155,7 +159,11 @@ def watchlist_add_or_delete(request, auction_id):
 
 def categories(request):
     all_categories = List_Auctions.objects.values_list('category', flat=True).distinct()
-    user_watchlist = Watchlist.objects.get(user=request.user)
+    if request.user.is_authenticated:
+        user_watchlist = Watchlist.objects.get(user=request.user)
+        number_of_watchlist_items = user_watchlist.count_items
+    else:
+        number_of_watchlist_items = 0
     if request.method == 'POST':
         requested_category = request.POST["category"]
         if requested_category not in all_categories:
@@ -166,9 +174,13 @@ def categories(request):
             "requested_category": requested_category,
             "all_auctions": auctions_with_requested_category,
             "from_home_or_category": True,
-            "number_of_watchlist_items": user_watchlist.count_items
+            "number_of_watchlist_items": number_of_watchlist_items
         })
     return render(request, 'auctions/categories.html', {
         "all_categories": all_categories,
-        "number_of_watchlist_items": user_watchlist.count_items
+        "number_of_watchlist_items": number_of_watchlist_items
     })
+
+
+def not_login(request):
+    return render(request, 'auctions/not_login.html')

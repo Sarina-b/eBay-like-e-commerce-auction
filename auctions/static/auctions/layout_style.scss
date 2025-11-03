@@ -19,3 +19,19 @@ hr {
   height: 2px;
   background-color: $my_color;
 }
+
+.not_login {
+  font-family: $my-font;
+  color: $my-color;
+  font-weight: bolder;
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+
+.not_login_img {
+  width: 30%;
+}

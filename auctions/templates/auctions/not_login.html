@@ -1,0 +1,10 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="not_login">
+        <div>You are not logged in</div>
+        <a class="link" href="{% url 'login' %}">Log in here</a>
+        <img class="not_login_img" src="{% static 'auctions/no_login.png' %}">
+    </div>
+{% endblock %}

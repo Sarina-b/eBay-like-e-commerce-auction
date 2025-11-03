@@ -478,4 +478,20 @@ hr {
   background-color: #082163;
 }
 
+.not_login {
+  font-family: Arial, sans-serif;
+  color: #082163;
+  font-weight: bolder;
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+
+.not_login_img {
+  width: 30%;
+}
+
 /*# sourceMappingURL=layout_style.css.map */
