@@ -66,11 +66,6 @@
                 <input class="place_button" type="submit" value="Place Comment" name="placing_comment">
             </form>
         </div>
-        {% if owner_of_auction %}
-            <input class="place_bid_button" type="submit" value="Place Bid" name="placing_bid" disabled>
-            <div class="not_allowed_container">Owner is not allowed to place comment and bid</div>
-        {% endif %}
-
     {% else %}
         <div class="not_allowed_container">It is sold {{ requested_auction.start_bid }} $</div>
     {% endif %}
