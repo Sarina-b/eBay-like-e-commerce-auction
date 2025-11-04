@@ -133,7 +133,7 @@ def place_comment(request, requested_auction_id):
             now = timezone.now()
             if comment:
                 new_comment = Comment.objects.create(user=request.user, auction=requested_auction, text=comment,
-                                                     written_at=now)
+                                                     written_at=now, author_name=request.user.username)
                 new_comment.save()
             else:
                 messages.error(request, "Please enter a comment.")

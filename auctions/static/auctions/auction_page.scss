@@ -13,6 +13,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  height: auto;
 
 }
 
@@ -31,4 +32,20 @@ body {
   height: 10%;
   margin-left: 6%;
   border-radius: 3px;
+}
+
+.go_to_home_link {
+  @extend %row_center_flex;
+  text-decoration: none;
+  background-color: $my-color;
+  width: 20%;
+  height: 40px;
+  border-radius: 5px;
+  margin-left: 5%;
+  color: white;
+  font-family: $my-font;
+  margin-bottom: 3%;
+}
+.go_to_home_link:hover{
+  transform: scale(1.02);
 }

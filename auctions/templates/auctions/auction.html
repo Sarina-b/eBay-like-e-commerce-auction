@@ -6,6 +6,7 @@
     <title>{{ requested_auction.title }}</title>
     <link rel="stylesheet" href="{% static 'auctions/auction_page.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
 
 </head>
 <body>
@@ -82,9 +83,18 @@
         </div>
     {% endif %}
     <div class="auction_comments">
+        <h2 style="color: #082163">Comments on the listing</h2>
         {% if requested_auction.Comments.all %}
             {% for comment in requested_auction.Comments.all %}
-                <div class="each_comment">{{ comment.text }}</div>
+                <div class="each_comment">
+                    {% if comment.user %}
+                        <div class="comment_author"><i class="bx bxs-user"></i>{{ comment.author_name }}</div>
+                    {% else %}
+                        <div class="comment_author"><i class="bx bxs-user"></i>Deleted account</div>
+                    {% endif %}
+                    <div class="comment_text">{{ comment.text }}</div>
+                    <div class="comment_time">{{ comment.written_at }}</div>
+                </div>
             {% endfor %}
         {% else %}
             <div class="no_comments">No comment</div>
@@ -92,8 +102,8 @@
 
     </div>
     <div>
-
     </div>
+    <a class="go_to_home_link" href="{% url 'index' %}">Go to home</a>
 </div>
 </body>
 </html>

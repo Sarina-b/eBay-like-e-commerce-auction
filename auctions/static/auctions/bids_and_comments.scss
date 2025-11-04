@@ -1,5 +1,14 @@
 @import 'variables';
 
+%comments_style {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: auto;
+
+}
+
 %inputs {
   width: 70%;
   font-family: $my_font;
@@ -35,7 +44,7 @@
   margin-left: 20%;
   background-color: green;
   width: 14%;
-  height: 5%;
+  height: 30px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -113,17 +122,50 @@
 }
 
 .auction_comments {
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  background-color: #e8e7e7;
-  height: 20%;
-  border-radius: 10px;
   margin-left: 5%;
+  gap: 20px;
 }
 
-.auction_comments:hover {
+.each_comment {
+  font-family: $my-font;
+  background-color: #e8e7e7;
+  width: 100%;
+  border-radius: 10px;
+  min-height: 100px;
+  color: $my-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.each_comment:hover {
   transform: scale(1.02);
+}
+
+.comment_author {
+  @extend %comments_style;
+  justify-content: flex-start;
+  gap: 5px;
+  font-size: larger;
+  margin-left: 2%;
+}
+
+.comment_text {
+  @extend %comments_style;
+  width: 60%;
+  justify-content: flex-start;
+  margin-left: 20%;
+  text-align: left;
+
+}
+
+.comment_time {
+  @extend %comments_style;
+  justify-content: flex-end;
+
 }
