@@ -27,6 +27,7 @@ class List_Auctions(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     start_bid = models.FloatField()
+    number_of_bids = models.IntegerField(default=0)
     photo = models.URLField(max_length=500, blank=True, null=True)
     photo_file = models.ImageField(upload_to='auction_photos/', blank=True, null=True)
     category = models.CharField(max_length=100, blank=True, null=True)

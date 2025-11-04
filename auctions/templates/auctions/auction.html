@@ -57,12 +57,15 @@
                 <label class="labels_bid_comment" for="bid">Bid: </label>
                 <input class="bid" type="number" placeholder="your recommended bid" name="bid">
                 <input class="place_button" type="submit" value="Place Bid" name="placing_bid">
+                <h3 class="status">{{ requested_auction.number_of_bids }} bid(s) so far.The highest
+                    is {{ requested_auction.start_bid }} $. </h3>
             </form>
             <form class="comment_container" action="{% url 'place_comment' requested_auction.id %}" method="POST">
                 {% csrf_token %}
                 <label class="labels_bid_comment" for="comment">Comment: </label>
                 <input class="comment" type="text" placeholder="comment your opinion about this stuff" name="comment">
                 <input class="place_button" type="submit" value="Place Comment" name="placing_comment">
+                <h3 class="status"> {{ requested_auction.Comments.count }} comment(s) on the listing. </h3>
             </form>
         </div>
         {% if owner_of_auction %}
@@ -97,7 +100,7 @@
                 </div>
             {% endfor %}
         {% else %}
-            <div class="no_comments">No comment</div>
+            <div class="each_comment no_comment">No comment</div>
         {% endif %}
 
     </div>

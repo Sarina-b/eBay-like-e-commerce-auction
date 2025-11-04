@@ -113,6 +113,7 @@ def place_bid(request, requested_auction_id):
             if bid:
                 bid = float(bid)
                 if bid > requested_auction.start_bid:
+                    requested_auction.number_of_bids += 1
                     requested_auction.start_bid = bid
                     requested_auction.save()
                 else:
@@ -132,6 +133,8 @@ def place_comment(request, requested_auction_id):
             comment = request.POST["comment"]
             now = timezone.now()
             if comment:
+                # comments_number = Comment.objects.filter(pk=requested_auction.id).count()
+                # comments_number += 1
                 new_comment = Comment.objects.create(user=request.user, auction=requested_auction, text=comment,
                                                      written_at=now, author_name=request.user.username)
                 new_comment.save()
