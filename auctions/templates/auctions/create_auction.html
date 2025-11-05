@@ -15,24 +15,24 @@
         <h2>Create listing</h2>
     </div>
     <div class="input_container">
-        <label class="label" for="input_place">Title: </label>
-        <input class="input_place" type="text" name="title" required>
+        {{ form.title.label_tag }}
+        {{ form.title }}
     </div>
     <div class="input_container">
-        <label class="label" for="description_for_auction">Description: </label>
-        <textarea class="description_for_auction input_place" name="description" required></textarea>
+        {{ form.description.label_tag }}
+        {{ form.description }}
     </div>
     <div class="input_container">
-        <label class="label" for="input_place">Start bid: </label>
-        <input class="input_place" type="number" name="start_bid" required>
+        {{ form.start_bid.label_tag }}
+        {{ form.start_bid }}
     </div>
     <div class="input_container">
-        <label class="label" for="input_place">Category: </label>
-        <input class="input_place" type="text" name="category">
+        {{ form.category.label_tag }}
+        {{ form.category }}
     </div>
     <div class="input_container">
-        <label class="label" for="input_place">Image: </label>
-        <input class="input_place" type="url" name="image_url">
+        {{ form.photo.label_tag }}
+        {{ form.photo }}
     </div>
     <div class="button_container">
         <input class="Create_button" type="submit" value="Create auction" name="create button">

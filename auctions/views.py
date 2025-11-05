@@ -8,6 +8,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import User, Comment, Watchlist, Watchlist_Items, Bids
 from .models import List_Auctions
+from .forms import create_auction_form
 
 
 def index(request):
@@ -70,20 +71,18 @@ def register(request):
 @login_required
 def create_listing(request):
     if request.method == "POST":
-        start_date = timezone.now()
-        user = request.user
-        title = request.POST["title"]
-        description = request.POST["description"]
-        category = request.POST["category"]
-        image_url = request.POST["image_url"]
-        start_bid = request.POST["start_bid"]
-        new_auction = List_Auctions.objects.create(user=user, title=title, description=description,
-                                                   photo=image_url, category=category,
-                                                   start_bid=start_bid, start_date=start_date)
-        new_auction.save()
-        return redirect(reverse("show_auctions", args=[new_auction.id, title]))
+        form = create_auction_form(request.POST)
+        if form.is_valid():
+            auction = form.save(commit=False)
+            auction.user = request.user
+            auction.start_date = timezone.now()
+            auction.save()
+            return redirect(reverse("show_auctions", args=[auction.id, auction.title]))
+        else:
+            return render(request, 'auctions/create_auction.html')
     else:
-        return render(request, 'auctions/create_auction.html')
+        form = create_auction_form(request.POST)
+        return render(request, 'auctions/create_auction.html', {'form': form})
 
 
 def show_auctions(request, auction_id, auction_title):

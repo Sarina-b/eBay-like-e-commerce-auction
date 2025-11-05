@@ -34,8 +34,8 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.label {
-  width: 25%;
+.input_container label {
+  width: 26%;
   margin-left: 4%;
   align-items: flex-start;
   color: #082163;

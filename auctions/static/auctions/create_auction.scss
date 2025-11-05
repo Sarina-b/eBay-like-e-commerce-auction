@@ -36,8 +36,8 @@ body {
   font-family: $my_font;
 }
 
-.label {
-  width: 25%;
+.input_container label {
+  width: 26%;
   margin-left: 4%;
   align-items: flex-start;
   color: $my_color;
@@ -101,7 +101,7 @@ body {
   justify-content: center;
   align-items: flex-start;
   @extend %blur_background;
-   border: rgba(255, 255, 255, 0.2) solid;
+  border: rgba(255, 255, 255, 0.2) solid;
   gap: 20px;
   width: 45%;
   font-family: Arial sans-serif;
