@@ -41,7 +41,7 @@
         <div class="photo"><img src="{{ requested_auction.photo }}" alt="{{ requested_auction.title }}"></div>
         <div class="category_and_description">
             <div class="description">{{ requested_auction.description }}</div>
-            {% if requested_auction.category is not None %}
+            {% if requested_auction.category %}
                 <div class="category">Category: {{ requested_auction.category }}</div>
             {% endif %}
             <div class="auction_user_and_time">Listed by : {{ requested_auction.user }}

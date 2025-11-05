@@ -133,8 +133,6 @@ def place_comment(request, requested_auction_id):
             comment = request.POST["comment"]
             now = timezone.now()
             if comment:
-                # comments_number = Comment.objects.filter(pk=requested_auction.id).count()
-                # comments_number += 1
                 new_comment = Comment.objects.create(user=request.user, auction=requested_auction, text=comment,
                                                      written_at=now, author_name=request.user.username)
                 new_comment.save()
@@ -181,7 +179,9 @@ def watchlist_add_or_delete(request, auction_id):
 
 
 def categories(request):
-    all_categories = List_Auctions.objects.values_list('category', flat=True).distinct()
+    all_categories = (
+        List_Auctions.objects.exclude(category__isnull=True).exclude(category__exact="")
+        .values_list('category', flat=True).distinct())
     if request.user.is_authenticated:
         user_watchlist = Watchlist.objects.get(user=request.user)
         number_of_watchlist_items = user_watchlist.count_items
