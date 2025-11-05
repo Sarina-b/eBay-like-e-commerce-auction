@@ -31,6 +31,7 @@ class List_Auctions(models.Model):
     photo = models.URLField(max_length=500, blank=True, null=True)
     photo_file = models.ImageField(upload_to='auction_photos/', blank=True, null=True)
     category = models.CharField(max_length=100, blank=True, null=True)
+    winner = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField(blank=True, null=True)
     active = models.BooleanField(default=True)

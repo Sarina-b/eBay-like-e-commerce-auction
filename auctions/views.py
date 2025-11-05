@@ -6,7 +6,7 @@ from django.db import IntegrityError
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .models import User, Comment, Watchlist, Watchlist_Items
+from .models import User, Comment, Watchlist, Watchlist_Items, Bids
 from .models import List_Auctions
 
 
@@ -116,6 +116,9 @@ def place_bid(request, requested_auction_id):
                     requested_auction.number_of_bids += 1
                     requested_auction.start_bid = bid
                     requested_auction.save()
+                    new_bid = Bids.objects.create(user=request.user, auction=requested_auction, amount=bid,
+                                                  written_at=timezone.now())
+                    new_bid.save()
                 else:
                     messages.error(request, "Your suggested bid should be more than the latest bid.")
             else:
@@ -149,7 +152,11 @@ def deny_owner(request, requested_auction_id):
 
 def close_auction(request, auction_id):
     auction = List_Auctions.objects.get(pk=auction_id)
+    final_bid = auction.start_bid
+    the_bid = Bids.objects.filter(auction=auction, amount=final_bid).first()
+    auction.winner = the_bid.user
     auction.active = False
+    auction.end_date = timezone.now()
     auction.save()
     return redirect(reverse("show_auctions", args=[auction.id, auction.title]))
 

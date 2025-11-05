@@ -74,7 +74,16 @@
             </div>
         {% endif %}
     {% else %}
-        <div class="not_allowed_container">It is sold {{ requested_auction.start_bid }} $</div>
+        <div class="not_allowed_container">
+            {% if requested_auction.winner == request.user %}
+                It is sold {{ requested_auction.start_bid }} $
+                to You at {{ requested_auction.end_date }}
+            {% else %}
+                It is sold {{ requested_auction.start_bid }} $
+                to {{ requested_auction.winner.username }} at {{ requested_auction.end_date }}
+
+            {% endif %}
+        </div>
     {% endif %}
     {% if messages %}
         <div class="messages">
