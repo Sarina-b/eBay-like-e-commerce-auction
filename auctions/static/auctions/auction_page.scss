@@ -46,6 +46,14 @@ body {
   font-family: $my-font;
   margin-bottom: 3%;
 }
-.go_to_home_link:hover{
+
+.go_to_home_link:hover {
   transform: scale(1.02);
+}
+
+@media (max-width: 1100px) {
+  .go_to_home_link {
+    width: 40%;
+  }
+
 }

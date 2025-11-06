@@ -40,9 +40,9 @@
 }
 
 .current_bid {
-  margin-left: 20%;
+  margin-left: 16%;
   background-color: green;
-  width: 14%;
+  width: 20%;
   height: 30px;
   display: flex;
   flex-direction: row;
@@ -55,10 +55,7 @@
 }
 
 .money {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  @extend %row_center_flex;
   width: 100%;
 }
 
@@ -74,7 +71,7 @@
   width: 10%;
 }
 
-.comment_container {
+.comment_container, .bid_container {
   @extend %inputs_container;
 }
 
@@ -89,31 +86,25 @@
 
 }
 
-.bid_container {
-  @extend %inputs_container;
-}
-
 .place_button {
   background-color: $my_color;
   border-radius: 4px;
   width: 15%;
   height: 35px;
   color: white;
-  font-size: larger;
-  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-family: $my-font;
   border: $my-color solid;
 }
 
 .comment {
   @extend %inputs;
   height: 80px;
-
 }
 
 .bid {
   @extend %inputs;
   height: 40px;
-
 }
 
 .place_button:hover {
@@ -175,8 +166,33 @@
   color: $my-color;
   font-family: $my-font;
 }
-.no_comment{
+
+.no_comment {
   @extend %column_center_flex;
   height: 100%;
+}
 
+@media (max-width: 1100px) {
+  .current_bid {
+    margin-left: 5%;
+    width: 40%;
+  }
+  .comment_container, .bid_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .comment, .bid {
+    width: 90%;
+    margin-left: 5%;
+  }
+  .place_button {
+    width: 40%;
+    margin-left: 5%;
+  }
+  .status {
+    margin-left: 5%;
+  }
 }

@@ -1,3 +1,5 @@
+@import "variables";
+
 .photo_and_desc_container {
   display: flex;
   flex-direction: row;
@@ -23,15 +25,15 @@
 .photo {
   border: white solid;
   width: 100%;
-  min-height: 500px;
+  height: 500px;
 }
 
 .title {
-  font-family: Arial sans-serif;
+  font-family: $my-font;
   font-weight: bolder;
   font-size: 50px;
   margin-left: 5%;
-  color: #082163;
+  color: $my_color;
   height: auto;
 
 }
@@ -40,7 +42,6 @@
   text-align: left;
   width: 100%;
   height: auto;
-  /*font-weight: ;*/
   font-size: larger;
 }
 
@@ -52,23 +53,40 @@
   align-items: flex-start;
   width: 100%;
   color: #082163;
-  font-family: Arial, sans-serif;
+  font-family: $my-font;
   gap: 50px;
   font-weight: bolder;
 }
 
-.not_allowed_container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+.sold_container {
+  @extend %row_center_flex;
   background-color: #ea4747;
   border-radius: 5px;
   width: 40%;
   height: 50px;
   color: white;
-  font-family: Arial sans-serif;
+  font-family: $my-font;
   font-size: larger;
   margin-left: 5%;
+}
+
+@media (max-width: 1100px) {
+  .photo_and_desc_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+  }
+  .photo {
+    width: 90%;
+    height: 450px;
+  }
+  .description {
+    text-align: center;
+  }
+  .sold_container {
+    width: 90%;
+  }
 
 }

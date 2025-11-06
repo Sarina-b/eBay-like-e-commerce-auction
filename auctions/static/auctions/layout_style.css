@@ -723,4 +723,15 @@ hr {
   width: 30%;
 }
 
+@media (min-width: 750px) and (max-width: 1000px) {
+  .not_login_img {
+    width: 37%;
+  }
+}
+@media (max-width: 749px) {
+  .not_login_img {
+    width: 50%;
+  }
+}
+
 /*# sourceMappingURL=layout_style.css.map */
