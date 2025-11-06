@@ -27,8 +27,8 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-top: 2%;
-  margin-right: 12%;
+  margin-top: 3%;
+  margin-right: 8%;
 }
 
 .nav_right {
@@ -56,6 +56,7 @@
 .status {
   @extend %titles;
   font-size: larger;
+  flex-wrap: nowrap;
 }
 
 @media (max-width: 1450px) and (min-width: 1301px) {
@@ -66,7 +67,7 @@
 
 @media (max-width: 1300px) and (min-width: 1150px) {
   .nav {
-    gap: 14%;
+    gap: 15%;
   }
 }
 

@@ -2,7 +2,7 @@
 
 {% block body %}
     <div class="form_container">
-        <form class="login_register_form just_register" action="{% url 'register' %}" method="post">
+        <form class="login_register_form" action="{% url 'register' %}" method="post">
             <h2 class="title_form">Register</h2>
             {% csrf_token %}
             <div class="form-group">

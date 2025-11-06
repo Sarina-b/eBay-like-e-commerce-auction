@@ -1,4 +1,5 @@
 @import 'variables';
+
 .form_container {
   @extend %column_center_flex;
   margin-top: 2%;
@@ -13,18 +14,13 @@
 .login_register_form {
   @extend %column_center_flex;
   gap: 20px;
-  width: 35%;
-  height: 400px;
+  width: 45%;
+  min-height: 500px;
   @extend %blur_background;
   border: rgba(255, 255, 255, 0.2) solid;
   border-radius: 20px;
   font-family: $my-font;
   color: $my_color;
-}
-
-.just_register {
-  height: 500px;
-  width: 40%;
 }
 
 .form-group {
@@ -34,14 +30,10 @@
   justify-content: flex-start;
   margin-left: 30%;
   align-items: center;
-  height: 10%;
 }
 
 .btn {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  @extend %row_center_flex;
   height: 10%;
   background-color: $my_color;
   width: 30%;
@@ -72,10 +64,10 @@
 
 .form_control_input {
   border-radius: 5px;
-  height: 70%;
-  border: none;
+  height: 40px;
   width: 50%;
   background-color: #d1ecfa;
+  border: $my_color solid 1px;
 
 }
 
@@ -96,4 +88,43 @@
 .link {
   color: $my_color;
   text-decoration: underline;
+}
+
+@media (min-width: 950px) and (max-width: 1300px) {
+  .login_register_form {
+    width: 60%;
+  }
+  .label_for_form {
+    width: 30%;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 949px) {
+  .login_register_form {
+    width: 85%;
+  }
+  .label_for_form {
+    width: 30%;
+
+  }
+}
+
+@media (max-width: 699px) {
+  .login_register_form {
+    width: 90%;
+  }
+  .form-group {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 5%;
+  }
+  .form_control_input {
+    width: 80%;
+    height: 40px;
+  }
+  .label_for_form {
+    width: 100%;
+  }
+
 }
