@@ -9,14 +9,14 @@
   backdrop-filter: blur(10px);
 }
 
-.login_register_form, .form_container, .no_watchlist_container {
+.login_register_form, .form_container, .no_watchlist_container, .all_info {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.watchlist_change, .start_bid_watchlist {
+.watchlist_change, .start_bid_watchlist, .start_bid, .each_auction {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -34,14 +34,14 @@
   backdrop-filter: blur(10px);
 }
 
-.login_register_form, .form_container, .no_watchlist_container {
+.login_register_form, .form_container, .no_watchlist_container, .all_info {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.watchlist_change, .start_bid_watchlist {
+.watchlist_change, .start_bid_watchlist, .start_bid, .each_auction {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -75,7 +75,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   margin-top: 2%;
-  margin-right: 7%;
+  margin-right: 12%;
 }
 
 .nav_right {
@@ -99,6 +99,36 @@
   font-size: larger;
 }
 
+@media (max-width: 1450px) and (min-width: 1301px) {
+  .nav {
+    gap: 23%;
+  }
+}
+@media (max-width: 1300px) and (min-width: 1150px) {
+  .nav {
+    gap: 14%;
+  }
+}
+@media (max-width: 1149px) {
+  .nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 4%;
+    height: auto;
+  }
+  .nav_left {
+    justify-content: center;
+    align-items: center;
+    margin-right: 0;
+  }
+  .nav_right {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
 .heading, .status {
   color: #082163;
   font-family: Arial, sans-serif;
@@ -110,14 +140,14 @@
   backdrop-filter: blur(10px);
 }
 
-.login_register_form, .form_container, .no_watchlist_container {
+.login_register_form, .form_container, .no_watchlist_container, .all_info {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.watchlist_change, .start_bid_watchlist {
+.watchlist_change, .start_bid_watchlist, .start_bid, .each_auction {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -125,18 +155,18 @@
 }
 
 .each_auction {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
   margin-left: 3%;
   margin-top: 1%;
-  align-items: center;
   gap: 5%;
   width: 90%;
   border-radius: 10px;
-  height: 300px;
+  height: auto;
   background: white;
   text-decoration: none;
+}
+
+.all_info {
+  width: 85%;
 }
 
 .image_container {
@@ -145,13 +175,13 @@
   border-style: solid;
   height: 90%;
   text-align: center;
-  width: 20%;
+  width: 25%;
 }
 
 .all_auctions_container {
-  justify-content: center;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 25px;
 }
 
@@ -180,6 +210,7 @@
 }
 
 .title {
+  margin-top: 2%;
   font-size: larger;
 }
 
@@ -197,13 +228,9 @@
 }
 
 .start_bid {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
   background: green;
   color: white;
-  height: 16%;
+  height: 40px;
   width: 30%;
   border-radius: 5px;
   margin-bottom: 2%;
@@ -215,7 +242,7 @@
 
 .created_time {
   height: 0.5%;
-  margin-bottom: 0;
+  margin-bottom: 2%;
   font-size: smaller;
   margin-top: 1%;
 }
@@ -229,6 +256,52 @@
   margin-top: 5%;
 }
 
+@media (min-width: 1150px) and (max-width: 1400px) {
+  .all_info {
+    width: 95%;
+  }
+  .image_container {
+    width: 30%;
+  }
+}
+@media (min-width: 900px) and (max-width: 1149px) {
+  .all_info {
+    width: 95%;
+  }
+  .image_container {
+    width: 45%;
+  }
+}
+@media (max-width: 899px) {
+  .each_auction {
+    display: flex;
+    flex-direction: column !important;
+    justify-content: center;
+    align-items: center;
+  }
+  .image_container {
+    width: 80%;
+    height: 300px;
+  }
+  .all_info {
+    width: 95%;
+  }
+  .info_container {
+    justify-content: center;
+    align-items: center;
+  }
+  .description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 90%;
+  }
+  .start_bid {
+    width: 40%;
+  }
+}
 .heading, .status {
   color: #082163;
   font-family: Arial, sans-serif;
@@ -240,14 +313,14 @@
   backdrop-filter: blur(10px);
 }
 
-.login_register_form, .form_container, .no_watchlist_container {
+.login_register_form, .form_container, .no_watchlist_container, .all_info {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.watchlist_change, .start_bid_watchlist {
+.watchlist_change, .start_bid_watchlist, .each_auction, .start_bid {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -329,14 +402,14 @@
   backdrop-filter: blur(10px);
 }
 
-.login_register_form, .form_container, .no_watchlist_container {
+.login_register_form, .form_container, .no_watchlist_container, .all_info {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.watchlist_change, .start_bid_watchlist {
+.watchlist_change, .start_bid_watchlist, .each_auction, .start_bid {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -451,14 +524,14 @@
   backdrop-filter: blur(10px);
 }
 
-.login_register_form, .form_container, .no_watchlist_container {
+.login_register_form, .form_container, .all_info, .no_watchlist_container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.start_bid_watchlist, .watchlist_change {
+.each_auction, .start_bid, .start_bid_watchlist, .watchlist_change {
   display: flex;
   flex-direction: row;
   justify-content: center;
