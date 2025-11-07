@@ -6,6 +6,8 @@ from django.db import IntegrityError
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
+
+from .URL_to_image import url_to_image
 from .models import User, Comment, Watchlist, Watchlist_Items, Bids
 from .models import List_Auctions
 from .forms import create_auction_form
@@ -76,6 +78,9 @@ def create_listing(request):
             auction = form.save(commit=False)
             auction.user = request.user
             auction.start_date = timezone.now()
+            print(form.cleaned_data['photo'])
+            auction.photo = url_to_image(form.cleaned_data['photo'])
+            print(auction.photo)
             auction.save()
             return redirect(reverse("show_auctions", args=[auction.id, auction.title]))
         else:
@@ -119,9 +124,9 @@ def place_bid(request, requested_auction_id):
                                                   written_at=timezone.now())
                     new_bid.save()
                 else:
-                    messages.error(request, "Your suggested bid should be more than the latest bid.")
+                    messages.error(request, "Your suggested bid should be more than the latest bid")
             else:
-                messages.error(request, "Please enter a bid.")
+                messages.error(request, "Please enter a bid")
     return redirect(reverse("show_auctions", args=[requested_auction.id, requested_auction.title]))
 
 
@@ -139,7 +144,7 @@ def place_comment(request, requested_auction_id):
                                                      written_at=now, author_name=request.user.username)
                 new_comment.save()
             else:
-                messages.error(request, "Please enter a comment.")
+                messages.error(request, "Please enter a comment")
     return redirect(reverse("show_auctions", args=[requested_auction.id, requested_auction.title]))
 
 

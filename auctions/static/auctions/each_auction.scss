@@ -18,12 +18,17 @@
 }
 
 .image_container {
+  @extend %column_center_flex;
   margin-left: 3%;
-  border-color: white;
-  border-style: solid;
-  height: 90%;
+  height: 250px;
   text-align: center;
   width: 25%;
+  border: white solid;
+}
+
+.image {
+  height: 100%;
+  width: 100%;
 }
 
 .all_auctions_container {

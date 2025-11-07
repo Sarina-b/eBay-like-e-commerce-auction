@@ -9,7 +9,7 @@
   backdrop-filter: blur(10px);
 }
 
-.login_register_form, .form_container, .no_watchlist_container, .all_info {
+.login_register_form, .form_container, .no_watchlist_container, .image_container, .all_info {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -34,7 +34,7 @@
   backdrop-filter: blur(10px);
 }
 
-.login_register_form, .form_container, .no_watchlist_container, .all_info {
+.login_register_form, .form_container, .no_watchlist_container, .image_container, .all_info {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -141,7 +141,7 @@
   backdrop-filter: blur(10px);
 }
 
-.login_register_form, .form_container, .no_watchlist_container, .all_info {
+.login_register_form, .form_container, .no_watchlist_container, .image_container, .all_info {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -172,11 +172,15 @@
 
 .image_container {
   margin-left: 3%;
-  border-color: white;
-  border-style: solid;
-  height: 90%;
+  height: 250px;
   text-align: center;
   width: 25%;
+  border: white solid;
+}
+
+.image {
+  height: 100%;
+  width: 100%;
 }
 
 .all_auctions_container {
@@ -314,7 +318,7 @@
   backdrop-filter: blur(10px);
 }
 
-.login_register_form, .form_container, .no_watchlist_container, .all_info {
+.login_register_form, .form_container, .no_watchlist_container, .all_info, .image_container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -421,7 +425,7 @@
   backdrop-filter: blur(10px);
 }
 
-.login_register_form, .form_container, .no_watchlist_container, .all_info {
+.login_register_form, .form_container, .no_watchlist_container, .all_info, .image_container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -454,12 +458,13 @@
   backdrop-filter: blur(10px);
   border-radius: 4%;
   border: white solid;
-  margin-top: 2%;
+  margin-top: 3%;
 }
 
 .image_container_watchlist {
   width: 100%;
   height: 200px;
+  margin-top: 3%;
 }
 
 .link_info {
@@ -563,7 +568,7 @@
   backdrop-filter: blur(10px);
 }
 
-.login_register_form, .form_container, .all_info, .no_watchlist_container {
+.login_register_form, .form_container, .all_info, .image_container, .no_watchlist_container {
   display: flex;
   flex-direction: column;
   justify-content: center;

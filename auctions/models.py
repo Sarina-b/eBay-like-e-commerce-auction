@@ -36,16 +36,6 @@ class List_Auctions(models.Model):
     end_date = models.DateTimeField(blank=True, null=True)
     active = models.BooleanField(default=True)
 
-    def convert_URL_to_file(self):
-        if self.photo and not self.photo_file:
-            try:
-                temp_space = NamedTemporaryFile(delete=True)
-                temp_space.write(urlopen(self.photo).read())
-                temp_space.flush()
-                self.photo_file.save(f"image_{self.pk}.jpg", File(temp_space), save=False)
-            except:
-                pass
-
     def __str__(self):
         return (f" {self.id} + {self.user} + {self.title} + {self.description} + {self.start_date} - {self.end_date}"
                 f"+ {self.category} + {self.start_bid} + {self.photo} + {self.active}")

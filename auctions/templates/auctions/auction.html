@@ -38,7 +38,8 @@
 <div class="auction_info">
     <div class="title">{{ requested_auction.title }}</div>
     <div class="photo_and_desc_container">
-        <div class="photo"><img src="{{ requested_auction.photo }}" alt="{{ requested_auction.title }}"></div>
+        <div class="photo"><img class="photo" src={{ requested_auction.photo }} alt="{{ requested_auction.title }}">
+        </div>
         <div class="category_and_description">
             <div class="description">{{ requested_auction.description }}</div>
             {% if requested_auction.category %}

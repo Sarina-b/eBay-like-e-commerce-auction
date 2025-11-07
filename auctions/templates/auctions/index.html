@@ -12,7 +12,8 @@
             {% if auction.active %}
                 <a class="all_info" href="{% url 'show_auctions' auction.id  auction.title %}">
                     <div class="each_auction">
-                        <div class="image_container"><img src="{{ auction.photo }}" alt="{{ auction.title }}"></div>
+                        <div class="image_container"><img class="image" src="{{ auction.photo }}"
+                                                          alt="{{ auction.title }}"></div>
                         <div class="info_container">
                             <p class="title">{{ auction.title }}</p>
                             <p class="description">{{ auction.description|slice:":60" }}
