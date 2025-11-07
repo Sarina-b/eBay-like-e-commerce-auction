@@ -7,13 +7,14 @@ from tempfile import NamedTemporaryFile
 
 # users(user_id,email,username,password)
 #
-# list_auctions(auction_id,user_id,title,description,start_bid,photo,category,start_date,end_date,active)
+# list_auctions(auction_id,user_id,title,description,start_bid,number_of_bids,photo,photo_file,
+#                category,winner,start_date,end_date,active)
 #
 # watchlist(watchlist_id,user_id UNIQUE)
 #
 # watchlist_items(id,watchlist_id,auction_id)
 #
-# comments(comment_id,user_id,auction_id,text,written_at)
+# comments(comment_id,user_id,author_name,auction_id,text,written_at)
 #
 # bids(bid_id,user_id ,auction_id ,amount,written_at)
 

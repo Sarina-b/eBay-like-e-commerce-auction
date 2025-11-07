@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils import timezone
 from django.contrib.auth import authenticate, login, logout
-from django.db import IntegrityError
+from django.db import IntegrityError, transaction
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -73,14 +73,12 @@ def register(request):
 @login_required
 def create_listing(request):
     if request.method == "POST":
-        form = create_auction_form(request.POST)
+        form = create_auction_form()
         if form.is_valid():
             auction = form.save(commit=False)
             auction.user = request.user
             auction.start_date = timezone.now()
-            print(form.cleaned_data['photo'])
             auction.photo = url_to_image(form.cleaned_data['photo'])
-            print(auction.photo)
             auction.save()
             return redirect(reverse("show_auctions", args=[auction.id, auction.title]))
         else:
@@ -113,20 +111,21 @@ def place_bid(request, requested_auction_id):
         if request.user == requested_auction.user:
             return redirect(reverse('deny_owner', args=[requested_auction_id]))
         else:
-            bid = request.POST["bid"]
-            if bid:
-                bid = float(bid)
-                if bid > requested_auction.start_bid:
-                    requested_auction.number_of_bids += 1
-                    requested_auction.start_bid = bid
-                    requested_auction.save()
-                    new_bid = Bids.objects.create(user=request.user, auction=requested_auction, amount=bid,
-                                                  written_at=timezone.now())
-                    new_bid.save()
+            with transaction.atomic():
+                bid = request.POST["bid"]
+                if bid:
+                    bid = float(bid)
+                    if bid > requested_auction.start_bid:
+                        requested_auction.number_of_bids += 1
+                        requested_auction.start_bid = bid
+                        requested_auction.save()
+                        new_bid = Bids.objects.create(user=request.user, auction=requested_auction, amount=bid,
+                                                      written_at=timezone.now())
+                        new_bid.save()
+                    else:
+                        messages.error(request, "Your suggested bid should be more than the latest bid")
                 else:
-                    messages.error(request, "Your suggested bid should be more than the latest bid")
-            else:
-                messages.error(request, "Please enter a bid")
+                    messages.error(request, "Please enter a bid")
     return redirect(reverse("show_auctions", args=[requested_auction.id, requested_auction.title]))
 
 
@@ -158,10 +157,11 @@ def close_auction(request, auction_id):
     auction = List_Auctions.objects.get(pk=auction_id)
     final_bid = auction.start_bid
     the_bid = Bids.objects.filter(auction=auction, amount=final_bid).first()
-    auction.winner = the_bid.user
-    auction.active = False
-    auction.end_date = timezone.now()
-    auction.save()
+    if the_bid:
+        auction.winner = the_bid.user
+        auction.active = False
+        auction.end_date = timezone.now()
+        auction.save()
     return redirect(reverse("show_auctions", args=[auction.id, auction.title]))
 
 
@@ -180,12 +180,11 @@ def show_watchlist(request):
 def watchlist_add_or_delete(request, auction_id):
     auction = List_Auctions.objects.get(pk=auction_id)
     user_watchlist = Watchlist.objects.get(user=request.user)
-    if Watchlist_Items.objects.filter(auction=auction, watchlist=user_watchlist).exists():
-        target_watchlist_Items = Watchlist_Items.objects.get(auction=auction, watchlist=user_watchlist)
-        target_watchlist_Items.delete()
-        return redirect(reverse("show_auctions", args=[auction.id, auction.title]))
-    new_watchlist_items = Watchlist_Items.objects.create(watchlist=user_watchlist, auction=auction)
-    new_watchlist_items.save()
+    new_watchlist_items, is_created = Watchlist_Items.objects.get_or_create(watchlist=user_watchlist, auction=auction)
+    if is_created:
+        new_watchlist_items.save()
+    else:
+        new_watchlist_items.delete()
     return redirect(reverse("show_auctions", args=[auction.id, auction.title]))
 
 
