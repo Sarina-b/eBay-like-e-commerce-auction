@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  django_app:
+    build: .
+    container_name: auction_site
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app  # Maps your host folder to the container (Persistence for DB & Code)
+    ports:
+      - "8000:8000" # Accessible at localhost:8000
+    networks:
+      - global-monitoring
+
+# Connect to the existing network you created for Mongo/Zabbix
+networks:
+  global-monitoring:
+    external: true
