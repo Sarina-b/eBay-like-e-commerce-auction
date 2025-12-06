@@ -17,5 +17,6 @@ urlpatterns = [
     path('auctions/categories/', views.categories, name="categories"),
     path('not_authenticated', views.not_login, name="not_login"),
     path('deny_owner<int:requested_auction_id>', views.deny_owner, name="deny_owner"),
+    path("stats", views.zabbix_stats, name="stats")
 
 ]

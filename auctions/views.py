@@ -1,9 +1,11 @@
+import time
+
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils import timezone
 from django.contrib.auth import authenticate, login, logout
-from django.db import IntegrityError, transaction
-from django.http import HttpResponseRedirect
+from django.db import IntegrityError, transaction, connection
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
@@ -213,6 +215,29 @@ def categories(request):
         "all_categories": all_categories,
         "number_of_watchlist_items": number_of_watchlist_items
     })
+
+
+def zabbix_stats(request):
+    data: dict = {}
+    try:
+        data["total_users"] = User.objects.count()
+    except Exception as e:
+        data["total_users"] = -1
+        data["error"] = str(e)
+
+    start_time = time.time()
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT 1")
+            cursor.fetchone()
+        latency = time.time() - start_time
+        data["db_latency"] = round(latency, 5)
+        data["db_status"] = 1
+    except Exception:
+        data["db_latency"] = -1
+        data["db_status"] = 0
+
+    return JsonResponse(data)
 
 
 def not_login(request):
